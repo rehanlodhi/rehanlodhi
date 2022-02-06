@@ -428,6 +428,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-left: auto;
   margin-right: auto;
 }
+.my-4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
 .mt-8 {
   margin-top: 2rem;
 }
@@ -463,6 +467,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .mt-\[5\%\] {
   margin-top: 5%;
+}
+.mb-4 {
+  margin-bottom: 1rem;
 }
 .flex {
   display: flex;
@@ -637,6 +644,10 @@ html, body {
 }
 
 @media (min-width: 640px) {
+
+  .sm\:mt-0 {
+    margin-top: 0px;
+  }
 
   .sm\:flex {
     display: flex;
