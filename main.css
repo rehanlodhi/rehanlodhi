@@ -4,5 +4,5 @@
 
 html,
 body{
-    @apply h-full w-full flex items-center justify-center
+    @apply sm:h-full sm:w-full
 }

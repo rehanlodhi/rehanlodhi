@@ -428,13 +428,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-left: auto;
   margin-right: auto;
 }
-.my-4 {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-.mt-8 {
-  margin-top: 2rem;
-}
 .mb-8 {
   margin-bottom: 2rem;
 }
@@ -461,15 +454,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .mb-2 {
   margin-bottom: 0.5rem;
-}
-.mt-\[10\%\] {
-  margin-top: 10%;
-}
-.mt-\[5\%\] {
-  margin-top: 5%;
-}
-.mb-4 {
-  margin-bottom: 1rem;
 }
 .flex {
   display: flex;
@@ -548,14 +532,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-gradient-from: #ec4899;
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(236 72 153 / 0));
 }
-.to-blue-500 {
-  --tw-gradient-to: #3b82f6;
+.to-blue-400 {
+  --tw-gradient-to: #60a5fa;
 }
 .to-violet-500 {
   --tw-gradient-to: #8b5cf6;
 }
-.to-blue-400 {
-  --tw-gradient-to: #60a5fa;
+.to-blue-500 {
+  --tw-gradient-to: #3b82f6;
 }
 .bg-clip-text {
   -webkit-background-clip: text;
@@ -571,10 +555,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
-}
-.py-4 {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
 }
 .pb-2 {
   padding-bottom: 0.5rem;
@@ -638,18 +618,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
-html, body {
-  display: flex;
-  height: 100%;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-}
-
 @media (min-width: 640px) {
 
-  .sm\:mt-0 {
-    margin-top: 0px;
+  html, body {
+    height: 100%;
+  }
+
+  html, body {
+    width: 100%;
   }
 
   .sm\:flex {
