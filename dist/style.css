@@ -554,6 +554,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .to-violet-500 {
   --tw-gradient-to: #8b5cf6;
 }
+.to-blue-400 {
+  --tw-gradient-to: #60a5fa;
+}
 .bg-clip-text {
   -webkit-background-clip: text;
           background-clip: text;
