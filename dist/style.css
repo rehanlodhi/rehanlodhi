@@ -428,6 +428,9 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-left: auto;
   margin-right: auto;
 }
+.mt-8 {
+  margin-top: 2rem;
+}
 .mb-8 {
   margin-bottom: 2rem;
 }
@@ -454,6 +457,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .mb-2 {
   margin-bottom: 0.5rem;
+}
+.mt-\[10\%\] {
+  margin-top: 10%;
+}
+.mt-\[5\%\] {
+  margin-top: 5%;
 }
 .flex {
   display: flex;
@@ -552,6 +561,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 .px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
+}
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 .pb-2 {
   padding-bottom: 0.5rem;
