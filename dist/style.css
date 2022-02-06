@@ -455,6 +455,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .mb-2 {
   margin-bottom: 0.5rem;
 }
+.mt-auto {
+  margin-top: auto;
+}
 .flex {
   display: flex;
 }
