@@ -1,0 +1,26 @@
+*{
+  box-sizing: border-box;
+}
+
+html,
+body,
+h1,h2,h3,
+ul{
+  margin: 0;
+  padding: 0;
+}
+body{
+  font-family: "Inter",-apple-system,BlinkMacSystemFont,"Helvetica Neue","Roboto",Roboto,Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+}
+
+h1, h2, h3{
+  font-weight: 600;
+  color: #222;
+  font-size: 2rem;
+  line-height: 1.2;
+}
+
+.container{
+  max-width: 850px;
+  margin: auto;
+}

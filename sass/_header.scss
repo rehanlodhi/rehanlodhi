@@ -1,0 +1,66 @@
+.header{
+  background: #f0f0f0;
+  border-bottom: 1px solid #f0f0f0;
+
+  &__inner{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: .5rem 1.5rem;
+
+    .brand h1{
+      font-size: 1rem;
+      font-weight: 600;
+      color: #343434;
+    }
+
+    .menu{
+      list-style: none;
+      display: flex;
+      gap: .6rem;
+
+      &__item a{
+        text-decoration: none;
+        color: #343434;
+        font-size: .9rem;
+        font-weight: 500;
+        line-height: 1.1;
+        padding: 0.5rem;
+        border-radius: 8px;
+        display: flex;
+        gap: 0.4rem;
+        align-items: center;
+      }
+
+      &__item a:hover{
+        background: #ddd;
+        color: #222
+      }
+
+      &__item img{
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    .icons{
+      list-style: none;
+      display: flex;
+
+      &__item a{
+        border-radius: 8px;
+        padding: .5rem;
+        display: flex;
+        align-items: center;
+      }
+      &__item a:hover{
+        background: #ddd;
+        color: #222
+      }
+      img{
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+}
