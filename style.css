@@ -1,0 +1,356 @@
+/*!
+Theme Name: Rehan Lodhi
+Theme URI: http://underscores.me/
+Author: Rehan Lodhi
+Author URI: http://rehanlodhi.work
+Description: Description
+Version: 1.0.0
+Tested up to: 5.4
+Requires PHP: 5.6
+License: GNU General Public License v2 or later
+License URI: LICENSE
+Text Domain: rehanlodhi
+Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned.
+
+Rehan Lodhi is based on Underscores https://underscores.me/, (C) 2012-2020 Automattic, Inc.
+Underscores is distributed under the terms of the GNU GPL v2 or later.
+
+Normalizing styles have been helped along thanks to the fine work of
+Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
+*/
+
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+# Generic
+	- Normalize
+	- Box sizing
+# Base
+	- Typography
+	- Elements
+	- Links
+	- Forms
+## Layouts
+# Components
+	- Navigation
+	- Posts and pages
+	- Comments
+	- Widgets
+	- Media
+	- Captions
+	- Galleries
+# plugins
+	- Jetpack infinite scroll
+# Utilities
+	- Accessibility
+	- Alignments
+
+--------------------------------------------------------------*/
+* {
+	box-sizing: border-box;
+}
+
+html,
+body,
+h1,
+h2,
+h3,
+ul {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Roboto", Roboto, Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+h1,
+h2,
+h3 {
+	font-weight: 600;
+	color: #222;
+	font-size: 2rem;
+	line-height: 1.2;
+}
+
+.container {
+	max-width: 850px;
+	margin: auto;
+}
+
+.header {
+	background: #f0f0f0;
+	border-bottom: 1px solid #f0f0f0;
+}
+
+.header__inner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0.5rem 1.5rem;
+}
+
+.header__inner .brand h1 {
+	font-size: 1rem;
+	font-weight: 600;
+	color: #343434;
+}
+
+.header__inner .menu {
+	list-style: none;
+	display: flex;
+	gap: 0.6rem;
+}
+
+.header__inner .menu__item a {
+	text-decoration: none;
+	color: #343434;
+	font-size: 0.9rem;
+	font-weight: 500;
+	line-height: 1.1;
+	padding: 0.5rem;
+	border-radius: 8px;
+	display: flex;
+	gap: 0.4rem;
+	align-items: center;
+}
+
+.header__inner .menu__item a:hover {
+	background: #ddd;
+	color: #222;
+}
+
+.header__inner .menu__item img {
+	width: 20px;
+	height: 20px;
+}
+
+.header__inner .icons {
+	list-style: none;
+	display: flex;
+}
+
+.header__inner .icons__item a {
+	border-radius: 8px;
+	padding: 0.5rem;
+	display: flex;
+	align-items: center;
+}
+
+.header__inner .icons__item a:hover {
+	background: #ddd;
+	color: #222;
+}
+
+.header__inner .icons img {
+	width: 20px;
+	height: 20px;
+}
+
+.hero {
+	padding: 2rem;
+}
+
+.about {
+	display: flex;
+	align-items: center;
+	gap: 5rem;
+}
+
+.about__summary h1 {
+	font-size: 3rem;
+	font-weight: 600;
+	margin: 0 0 0.75rem 0;
+	color: #222;
+}
+
+.about__summary p {
+	font-size: 1.2rem;
+	color: #343434;
+	margin: 0 0 2rem;
+	line-height: 1.65;
+}
+
+.about__image img {
+	width: 250px;
+	height: auto;
+	border-radius: 8px;
+}
+
+.hero .buttons a {
+	font-size: 0.9rem;
+	color: #777;
+	font-weight: 600;
+	text-decoration: none;
+	display: flex;
+	align-items: center;
+	gap: 0.6rem;
+}
+
+.hero .buttons a img {
+	width: 20px;
+	height: 20px;
+}
+
+.latest {
+	padding: 2rem;
+}
+
+.latest h2 {
+	font-weight: 400;
+}
+
+.latest h3 {
+	font-weight: 400;
+	font-size: 1rem;
+}
+
+.latest h3 span {
+	color: #e59e32;
+	margin-left: 5px;
+}
+
+.latest__header {
+	margin-bottom: 2rem;
+}
+
+.latest__header a {
+	color: #222;
+	text-decoration: none;
+	border-bottom: 2px solid #6b76f3;
+	margin-left: auto;
+}
+
+.latest__header,
+.latest__posts li {
+	display: flex;
+	align-items: center;
+	font-weight: 400;
+	font-size: 1rem;
+}
+
+.latest p {
+	margin: 0;
+}
+
+.latest__posts li {
+	font-size: 1rem;
+	padding: 0.6rem 0;
+}
+
+.latest__posts li img {
+	width: 20px;
+	height: 20px;
+	margin-right: 10px;
+}
+
+.latest__posts li p {
+	font-size: 0.8rem;
+	color: #444;
+	margin-left: auto;
+}
+
+/*Projects page*/
+.page_header {
+	padding: 2rem 0;
+}
+
+.page_header__heading {
+	text-align: center;
+}
+
+.page_header__description {
+	color: #777;
+	font-size: 1rem;
+	text-align: center;
+}
+
+/*.container.large{
+  max-width: 1100px;
+}*/
+.projects {
+	grid-gap: 35px;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, 260px);
+	padding: 2rem 0;
+}
+
+.project-card {
+	background: rgba(0, 0, 0, 0.03);
+	border: 1px solid rgba(0, 0, 0, 0.3);
+	border-radius: 4px;
+	padding: 2rem;
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	align-items: center;
+}
+
+.project-card p {
+	margin: 0;
+	text-align: center;
+}
+
+.project-card__image {
+	width: 100px;
+}
+
+.project-card__links {
+	list-style: none;
+	display: flex;
+	justify-content: center;
+	gap: 4px;
+	font-size: 12px;
+}
+
+.project-card__links li {
+	border-radius: 8px;
+	background: #fff;
+	padding: 8px;
+}
+
+/*Projects page*/
+
+/*About page*/
+.container.padding {
+	padding: 2rem;
+}
+
+.container.padding .content p,
+.container.padding .content li {
+	color: #343434;
+	line-height: 2;
+}
+
+.container.padding .content h3 {
+	margin: 10px 0;
+}
+
+.container.padding .content ul {
+	padding-left: 40px;
+}
+
+.container.padding .content h3 {
+	font-weight: 300;
+	color: #444;
+}
+
+/*About page*/
+footer div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 2rem;
+	background: #f0f0f0;
+}
+
+footer div ul {
+	list-style: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 20px;
+}
