@@ -1,0 +1,14 @@
+nav {
+  border-bottom: 1px solid #e4e4e4;
+
+  .nav {
+    display: flex;
+    gap: 20px;
+    padding: 20px 0;
+
+    a {
+      text-decoration: none;
+      color: #000000;
+    }
+  }
+}
