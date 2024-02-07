@@ -43,7 +43,7 @@ border: 1px solid #fff;
 Variables
 ------------------------------------------------
 ----------------------------------------------*/
-$mobile: 320px;
+$mobile: 375px;
 $tablet: 768px;
 $desktop: 1024px;
 
@@ -117,7 +117,8 @@ body {
 }
 
 .desktop-only {
-  @media (min-width: $mobile) {
-
+  display: none;
+  @media (min-width: $tablet) {
+    display: block;
   }
 }
