@@ -3,7 +3,7 @@
   <img src="https://komarev.com/ghpvc/?username=rehanlodhi" alt="Profile Views">
 </p>
 
-## I'm [Your Name] - Web Developer & Blogger
+## I'm Rehan Lodhi - Software Engineer (PHP)
 
 [![Website](https://img.shields.io/website?label=website&style=for-the-badge&url=https://rehanlodhi.com/)](https://rehanlodhi.com)
 [![Blog](https://img.shields.io/badge/blog-read%20now-green?style=for-the-badge)](https://rehanlodhi.com/blog)
