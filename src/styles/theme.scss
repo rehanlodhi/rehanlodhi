@@ -1,0 +1,15 @@
+header {
+  .wp-block-site-logo {
+    @media ( min-width: 600px ) {
+      display: none;
+    }
+  }
+  
+  .site-title {
+    display: none;
+    
+    @media ( min-width: 600px ) {
+      display: unset;
+    }
+  }
+}
