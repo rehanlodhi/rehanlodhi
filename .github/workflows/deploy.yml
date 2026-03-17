@@ -39,8 +39,8 @@ jobs:
 
           # 3. Deploy via rsync
           rsync -avz --delete \
-            --exclude='node_modules' \
-            --exclude='src' \
+            --exclude='/node_modules' \
+            --exclude='/src' \
             --exclude='.git*' \
             -e "ssh -o StrictHostKeyChecking=no" \
             ./ rehanlodhi@rehanlodhi.com:/home/sites/dev.rehanlodhi.com/public/wp-content/themes/rehan-lodhi
