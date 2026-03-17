@@ -7,7 +7,15 @@
 			"wideSize": "700px"
 		},
 		"spacing": {
-			"units": [ "%", "px", "em", "rem", "vh", "vw" ]
+			"units": [ "%", "px", "em", "rem", "vh", "vw" ],
+			"defaultSpacingSizes": false,
+			"spacingSizes": [
+				{
+					"name": "Regular",
+					"size": "clamp(30px, 5vw, 50px)",
+					"slug": "50"
+				}
+			]
 		},
 		"typography": {
 			"fontFamilies": [
@@ -54,6 +62,12 @@
 		"useRootPaddingAwareAlignments": true
 	},
 	"styles": {
+		"spacing": {
+			"padding": {
+				"left": "var:preset|spacing|50",
+				"right": "var:preset|spacing|50"
+			}
+		},
 		"typography": {
 			"fontFamily": "var:preset|font-family|geist-sans"
 		},
