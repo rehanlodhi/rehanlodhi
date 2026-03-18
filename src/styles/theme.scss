@@ -13,3 +13,22 @@ header {
     }
   }
 }
+
+.hero {
+  &__image {
+    display: none;
+
+    @media ( min-width: 782px ) {
+      display: unset;
+    }
+  }
+}
+
+footer {
+  .footer__col {
+    @media ( min-width: 600px ) {
+      flex-grow: 0 !important;
+      flex-basis: 25% !important;
+    }
+  }
+}
