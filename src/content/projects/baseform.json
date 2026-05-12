@@ -1,0 +1,11 @@
+{
+  "number": "04",
+  "category": "Design",
+  "name": "Baseform",
+  "description": "Headless form primitives for React. Accessible by default, zero runtime dependencies, fully typed with Zod integration and built-in validation states.",
+  "stack": ["TypeScript", "React", "Zod"],
+  "linkLabel": "NPM Package →",
+  "url": "https://github.com/rehanlodhi",
+  "featured": false,
+  "order": 4
+}

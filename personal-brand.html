@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alex Mercer — Developer & Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --zinc-50:  #fafafa;
+    --zinc-100: #f4f4f5;
+    --zinc-200: #e4e4e7;
+    --zinc-300: #d4d4d8;
+    --zinc-400: #a1a1aa;
+    --zinc-500: #71717a;
+    --zinc-600: #52525b;
+    --zinc-700: #3f3f46;
+    --zinc-800: #27272a;
+    --zinc-900: #18181b;
+    --zinc-950: #09090b;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'IBM Plex Sans', sans-serif;
+    background: var(--zinc-50);
+    color: var(--zinc-900);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── PAGE VISIBILITY ── */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--zinc-50);
+    border-bottom: 1px solid var(--zinc-200);
+    padding: 0 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+  }
+
+  .nav-logo {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--zinc-900);
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--zinc-500);
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .nav-links a:hover, .nav-links a.active { color: var(--zinc-900); }
+
+  .nav-socials {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .nav-socials a {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--zinc-500);
+    text-decoration: none;
+    border: 1px solid var(--zinc-200);
+    padding: 5px 12px;
+  }
+
+  .nav-socials a:hover { border-color: var(--zinc-900); color: var(--zinc-900); }
+
+  /* ── BLOCK SYSTEM ── */
+  .block {
+    border-bottom: 1px solid var(--zinc-200);
+  }
+
+  .block-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 5rem 3rem;
+  }
+
+  .block-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--zinc-400);
+    margin-bottom: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .block-label::after {
+    content: '';
+    display: block;
+    height: 1px;
+    width: 48px;
+    background: var(--zinc-300);
+  }
+
+  /* ── HERO BLOCK ── */
+  .hero-block {
+    background: var(--zinc-50);
+  }
+
+  .hero-block .block-inner {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 4rem;
+    align-items: end;
+  }
+
+  .hero-heading {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(72px, 10vw, 120px);
+    line-height: 0.92;
+    letter-spacing: 0.01em;
+    color: var(--zinc-900);
+    margin-bottom: 2rem;
+  }
+
+  .hero-heading span {
+    color: var(--zinc-400);
+  }
+
+  .hero-bio {
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--zinc-600);
+    font-weight: 300;
+    max-width: 520px;
+  }
+
+  .hero-bio strong {
+    font-weight: 500;
+    color: var(--zinc-800);
+  }
+
+  .hero-meta {
+    border-left: 2px solid var(--zinc-200);
+    padding-left: 2rem;
+  }
+
+  .hero-meta-item {
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-meta-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--zinc-400);
+    margin-bottom: 4px;
+  }
+
+  .hero-meta-value {
+    font-size: 14px;
+    color: var(--zinc-700);
+    font-weight: 400;
+  }
+
+  .hero-cta {
+    display: inline-block;
+    margin-top: 2rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--zinc-50);
+    background: var(--zinc-900);
+    padding: 13px 28px;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+  }
+
+  .hero-cta:hover { background: var(--zinc-700); }
+
+  /* ── PROJECTS BLOCK ── */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--zinc-200);
+    border: 1px solid var(--zinc-200);
+  }
+
+  .project-card {
+    background: var(--zinc-50);
+    padding: 2rem;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .project-card:hover { background: var(--zinc-100); }
+
+  .project-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--zinc-400);
+    margin-bottom: 1rem;
+  }
+
+  .project-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 0.02em;
+    color: var(--zinc-900);
+    line-height: 1;
+    margin-bottom: 0.75rem;
+  }
+
+  .project-desc {
+    font-size: 13px;
+    color: var(--zinc-500);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+  }
+
+  .project-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .stack-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: var(--zinc-600);
+    background: var(--zinc-100);
+    border: 1px solid var(--zinc-200);
+    padding: 3px 8px;
+  }
+
+  .project-arrow {
+    display: block;
+    margin-top: 1.5rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--zinc-400);
+  }
+
+  .project-card:hover .project-arrow { color: var(--zinc-900); }
+
+  /* ── BLOG BLOCK ── */
+  .blog-list {
+    display: grid;
+    gap: 0;
+    border: 1px solid var(--zinc-200);
+  }
+
+  .blog-item {
+    display: grid;
+    grid-template-columns: 120px 1fr auto;
+    gap: 2rem;
+    align-items: start;
+    padding: 1.75rem 2rem;
+    border-bottom: 1px solid var(--zinc-200);
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .blog-item:last-child { border-bottom: none; }
+  .blog-item:hover { background: var(--zinc-100); }
+
+  .blog-date {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--zinc-400);
+    padding-top: 3px;
+  }
+
+  .blog-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--zinc-900);
+    margin-bottom: 4px;
+  }
+
+  .blog-excerpt {
+    font-size: 13px;
+    color: var(--zinc-500);
+    font-weight: 300;
+    line-height: 1.5;
+  }
+
+  .blog-category {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--zinc-400);
+    border: 1px solid var(--zinc-200);
+    padding: 4px 10px;
+    white-space: nowrap;
+    align-self: start;
+  }
+
+  /* ── CONTACT BLOCK ── */
+  .contact-block { background: var(--zinc-900); }
+  .contact-block .block-label { color: var(--zinc-600); }
+  .contact-block .block-label::after { background: var(--zinc-700); }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .contact-heading {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 72px;
+    line-height: 0.9;
+    color: var(--zinc-50);
+    letter-spacing: 0.01em;
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-subtext {
+    font-size: 14px;
+    color: var(--zinc-500);
+    font-weight: 300;
+    line-height: 1.7;
+    max-width: 360px;
+  }
+
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: var(--zinc-800);
+    border: 1px solid var(--zinc-800);
+    margin-top: 3rem;
+  }
+
+  .contact-link-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--zinc-900);
+    padding: 1.25rem 1.5rem;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .contact-link-item:hover { background: var(--zinc-800); }
+
+  .contact-link-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--zinc-500);
+  }
+
+  .contact-link-value {
+    font-size: 14px;
+    color: var(--zinc-300);
+    font-weight: 400;
+  }
+
+  .contact-form-wrap {
+    padding-top: 0.5rem;
+  }
+
+  .form-field {
+    margin-bottom: 1.25rem;
+  }
+
+  .form-label {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--zinc-600);
+    margin-bottom: 8px;
+  }
+
+  .form-input,
+  .form-textarea {
+    width: 100%;
+    background: var(--zinc-800);
+    border: 1px solid var(--zinc-700);
+    color: var(--zinc-200);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 14px;
+    padding: 12px 14px;
+    outline: none;
+    font-weight: 300;
+  }
+
+  .form-input:focus, .form-textarea:focus { border-color: var(--zinc-500); }
+  .form-textarea { resize: vertical; min-height: 100px; }
+
+  .form-submit {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--zinc-900);
+    background: var(--zinc-200);
+    border: none;
+    padding: 14px 32px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+  .form-submit:hover { background: var(--zinc-50); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--zinc-950);
+    padding: 2rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-copy {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--zinc-700);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+
+  .footer-links a {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--zinc-600);
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .footer-links a:hover { color: var(--zinc-300); }
+
+  /* ── ABOUT PAGE ── */
+  .about-block .block-inner {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .about-sidebar {
+    position: sticky;
+    top: 80px;
+  }
+
+  .about-avatar {
+    width: 100%;
+    aspect-ratio: 1;
+    background: var(--zinc-200);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 64px;
+    color: var(--zinc-400);
+    letter-spacing: 0.02em;
+  }
+
+  .about-sidebar-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    color: var(--zinc-900);
+    letter-spacing: 0.02em;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .about-sidebar-role {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--zinc-400);
+    margin-bottom: 1.5rem;
+  }
+
+  .about-sidebar-links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 1.5rem;
+  }
+
+  .about-sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--zinc-600);
+    text-decoration: none;
+    padding: 8px 12px;
+    border: 1px solid var(--zinc-200);
+    cursor: pointer;
+  }
+
+  .about-sidebar-link:hover { border-color: var(--zinc-900); color: var(--zinc-900); }
+
+  .about-sidebar-link svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+  .about-content h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px;
+    letter-spacing: 0.02em;
+    color: var(--zinc-900);
+    line-height: 1;
+    margin-bottom: 1.25rem;
+    margin-top: 3rem;
+  }
+
+  .about-content h2:first-child { margin-top: 0; }
+
+  .about-content p {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--zinc-600);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  .about-content p strong {
+    font-weight: 500;
+    color: var(--zinc-800);
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--zinc-200);
+    border: 1px solid var(--zinc-200);
+    margin: 1.5rem 0;
+  }
+
+  .skill-item {
+    background: var(--zinc-50);
+    padding: 1rem 1.25rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--zinc-600);
+  }
+
+  .timeline {
+    border-left: 2px solid var(--zinc-200);
+    padding-left: 2rem;
+    margin: 1.5rem 0;
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 2rem;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -2.375rem;
+    top: 6px;
+    width: 8px;
+    height: 8px;
+    background: var(--zinc-200);
+    border: 2px solid var(--zinc-400);
+  }
+
+  .timeline-year {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: var(--zinc-400);
+    margin-bottom: 4px;
+  }
+
+  .timeline-role {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--zinc-900);
+    margin-bottom: 2px;
+  }
+
+  .timeline-company {
+    font-size: 13px;
+    color: var(--zinc-500);
+    font-weight: 300;
+    margin-bottom: 6px;
+  }
+
+  .timeline-desc {
+    font-size: 13px;
+    color: var(--zinc-500);
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  /* ── SECTION HEADING ── */
+  .section-heading {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 56px;
+    letter-spacing: 0.02em;
+    color: var(--zinc-900);
+    line-height: 1;
+    margin-bottom: 2.5rem;
+  }
+
+  .view-all {
+    display: inline-block;
+    margin-top: 2rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--zinc-500);
+    text-decoration: none;
+    border-bottom: 1px solid var(--zinc-200);
+    padding-bottom: 2px;
+    cursor: pointer;
+  }
+
+  .view-all:hover { color: var(--zinc-900); border-color: var(--zinc-900); }
+
+  @media (max-width: 900px) {
+    nav { padding: 0 1.5rem; }
+    .block-inner { padding: 3rem 1.5rem; }
+    .hero-block .block-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .hero-meta { border-left: none; border-top: 1px solid var(--zinc-200); padding-left: 0; padding-top: 1.5rem; display: grid; grid-template-columns: 1fr 1fr; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .blog-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    .blog-date { font-size: 10px; }
+    .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .about-block .block-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .about-sidebar { position: static; }
+    .skills-grid { grid-template-columns: repeat(2, 1fr); }
+    footer { flex-direction: column; gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAVIGATION ── -->
+<nav>
+  <span class="nav-logo" onclick="showPage('home', this)">AM_</span>
+  <ul class="nav-links">
+    <li><a onclick="showPage('home', this)" class="active" data-page="home">Home</a></li>
+    <li><a onclick="scrollTo('#projects')" data-page="projects">Projects</a></li>
+    <li><a onclick="scrollTo('#blog')" data-page="blog">Writing</a></li>
+    <li><a onclick="showPage('about', this)" data-page="about">About</a></li>
+    <li><a onclick="scrollTo('#contact')" data-page="contact">Contact</a></li>
+  </ul>
+  <div class="nav-socials">
+    <a href="https://linkedin.com/in/alexmercer" target="_blank">LinkedIn</a>
+    <a href="https://github.com/alexmercer" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════
+     HOME PAGE
+══════════════════════════════════════ -->
+<div id="page-home" class="page active">
+
+  <!-- HERO BLOCK -->
+  <section class="block hero-block">
+    <div class="block-inner">
+      <div>
+        <h1 class="hero-heading">Alex<br><span>Mercer</span></h1>
+        <p class="hero-bio">
+          <strong>Full-stack developer and systems thinker</strong> based in Karachi.
+          I build products that are fast, intentional, and made to last —
+          from early-stage MVPs to production infrastructure at scale.
+          Currently focused on developer tooling and open-source work.
+        </p>
+        <button class="hero-cta" onclick="showPage('about', null)">Read Full Bio →</button>
+      </div>
+      <div class="hero-meta">
+        <div class="hero-meta-item">
+          <div class="hero-meta-label">Status</div>
+          <div class="hero-meta-value">Available for freelance</div>
+        </div>
+        <div class="hero-meta-item">
+          <div class="hero-meta-label">Location</div>
+          <div class="hero-meta-value">Karachi, PK</div>
+        </div>
+        <div class="hero-meta-item">
+          <div class="hero-meta-label">Focus</div>
+          <div class="hero-meta-value">TypeScript · Rust · Systems</div>
+        </div>
+        <div class="hero-meta-item">
+          <div class="hero-meta-label">Experience</div>
+          <div class="hero-meta-value">7 years</div>
+        </div>
+        <div class="hero-meta-item">
+          <div class="hero-meta-label">Open Source</div>
+          <div class="hero-meta-value">12 active repos</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS BLOCK -->
+  <section class="block" id="projects">
+    <div class="block-inner">
+      <div class="block-label">Selected Work</div>
+      <h2 class="section-heading">Projects</h2>
+      <div class="projects-grid">
+
+        <a class="project-card" href="#" target="_blank">
+          <div class="project-tag">01 — Open Source</div>
+          <div class="project-name">Krate CLI</div>
+          <p class="project-desc">A minimal dependency graph visualiser for monorepos. Parses lockfiles across npm, pnpm, and cargo workspaces into a unified diff-able format.</p>
+          <div class="project-stack">
+            <span class="stack-tag">Rust</span>
+            <span class="stack-tag">WASM</span>
+            <span class="stack-tag">CLI</span>
+          </div>
+          <span class="project-arrow">View on GitHub →</span>
+        </a>
+
+        <a class="project-card" href="#" target="_blank">
+          <div class="project-tag">02 — Product</div>
+          <div class="project-name">Briefstack</div>
+          <p class="project-desc">Async briefing tool for remote design teams. Structured brief templates, version diffs, and approval workflows without the bloat of project management suites.</p>
+          <div class="project-stack">
+            <span class="stack-tag">Next.js</span>
+            <span class="stack-tag">Supabase</span>
+            <span class="stack-tag">Vercel</span>
+          </div>
+          <span class="project-arrow">Live Demo →</span>
+        </a>
+
+        <a class="project-card" href="#" target="_blank">
+          <div class="project-tag">03 — Infrastructure</div>
+          <div class="project-name">PgProxy</div>
+          <p class="project-desc">Connection pooling proxy for Postgres that adds row-level audit logs, query rate limiting, and per-tenant isolation with zero application code changes.</p>
+          <div class="project-stack">
+            <span class="stack-tag">Go</span>
+            <span class="stack-tag">Postgres</span>
+            <span class="stack-tag">Docker</span>
+          </div>
+          <span class="project-arrow">View Docs →</span>
+        </a>
+
+        <a class="project-card" href="#" target="_blank">
+          <div class="project-tag">04 — Design</div>
+          <div class="project-name">Baseform</div>
+          <p class="project-desc">Headless form primitives for React. Accessible by default, zero runtime dependencies, fully typed with Zod integration and built-in validation states.</p>
+          <div class="project-stack">
+            <span class="stack-tag">TypeScript</span>
+            <span class="stack-tag">React</span>
+            <span class="stack-tag">Zod</span>
+          </div>
+          <span class="project-arrow">NPM Package →</span>
+        </a>
+
+        <a class="project-card" href="#" target="_blank">
+          <div class="project-tag">05 — API</div>
+          <div class="project-name">Skimmer</div>
+          <p class="project-desc">Lightweight RSS-to-webhook pipeline with content deduplication, full-text extraction, and structured output to Discord, Slack, or custom endpoints.</p>
+          <div class="project-stack">
+            <span class="stack-tag">Python</span>
+            <span class="stack-tag">Fly.io</span>
+            <span class="stack-tag">SQLite</span>
+          </div>
+          <span class="project-arrow">Self-host Guide →</span>
+        </a>
+
+        <a class="project-card" href="#" target="_blank">
+          <div class="project-tag">06 — Research</div>
+          <div class="project-name">Coldframe</div>
+          <p class="project-desc">Evaluation harness for cold-start recommendation systems. Reproducible benchmarks across matrix factorisation, graph neural nets, and LLM-based baselines.</p>
+          <div class="project-stack">
+            <span class="stack-tag">Python</span>
+            <span class="stack-tag">PyTorch</span>
+            <span class="stack-tag">DVC</span>
+          </div>
+          <span class="project-arrow">Read Paper →</span>
+        </a>
+
+      </div>
+      <a class="view-all" href="https://github.com/alexmercer" target="_blank">All repositories on GitHub →</a>
+    </div>
+  </section>
+
+  <!-- BLOG BLOCK -->
+  <section class="block" id="blog">
+    <div class="block-inner">
+      <div class="block-label">Writing</div>
+      <h2 class="section-heading">Recent Posts</h2>
+      <div class="blog-list">
+
+        <a class="blog-item" href="#" target="_blank">
+          <div class="blog-date">May 2025</div>
+          <div>
+            <div class="blog-title">Why I stopped using ORMs for anything non-trivial</div>
+            <div class="blog-excerpt">On the hidden complexity cost of abstraction layers, and the case for writing SQL you actually understand.</div>
+          </div>
+          <div class="blog-category">Backend</div>
+        </a>
+
+        <a class="blog-item" href="#" target="_blank">
+          <div class="blog-date">Apr 2025</div>
+          <div>
+            <div class="blog-title">Building a personal monorepo with Turborepo and Nix</div>
+            <div class="blog-excerpt">A reproducible setup for managing multiple side-projects without environment drift — from flake.nix to CI.</div>
+          </div>
+          <div class="blog-category">Tooling</div>
+        </a>
+
+        <a class="blog-item" href="#" target="_blank">
+          <div class="blog-date">Mar 2025</div>
+          <div>
+            <div class="blog-title">Designing for cognitive load: principles from aviation UX</div>
+            <div class="blog-excerpt">What cockpit design research taught me about information hierarchy in dashboards and developer tools.</div>
+          </div>
+          <div class="blog-category">Design</div>
+        </a>
+
+        <a class="blog-item" href="#" target="_blank">
+          <div class="blog-date">Feb 2025</div>
+          <div>
+            <div class="blog-title">Ownership semantics in Rust made me a better TypeScript developer</div>
+            <div class="blog-excerpt">Learning Rust's borrow checker changed how I reason about state mutations and async data flows in JS.</div>
+          </div>
+          <div class="blog-category">Languages</div>
+        </a>
+
+        <a class="blog-item" href="#" target="_blank">
+          <div class="blog-date">Jan 2025</div>
+          <div>
+            <div class="blog-title">The case for boring infrastructure in early-stage startups</div>
+            <div class="blog-excerpt">Against premature Kubernetes. A pragmatic argument for RDS, EC2, and S3 when you have six users.</div>
+          </div>
+          <div class="blog-category">Infra</div>
+        </a>
+
+      </div>
+      <a class="view-all" href="#">All posts →</a>
+    </div>
+  </section>
+
+  <!-- CONTACT BLOCK -->
+  <section class="block contact-block" id="contact">
+    <div class="block-inner">
+      <div class="block-label">Get in Touch</div>
+      <div class="contact-grid">
+        <div>
+          <h2 class="contact-heading">Let's<br>Work<br>Together.</h2>
+          <p class="contact-subtext">
+            Open to consulting engagements, technical advisory roles, and interesting open-source collaborations. Response time is typically under 48 hours.
+          </p>
+          <div class="contact-links">
+            <a class="contact-link-item" href="mailto:alex@mercer.dev">
+              <span class="contact-link-label">Email</span>
+              <span class="contact-link-value">alex@mercer.dev</span>
+            </a>
+            <a class="contact-link-item" href="https://linkedin.com/in/alexmercer" target="_blank">
+              <span class="contact-link-label">LinkedIn</span>
+              <span class="contact-link-value">linkedin.com/in/alexmercer</span>
+            </a>
+            <a class="contact-link-item" href="https://github.com/alexmercer" target="_blank">
+              <span class="contact-link-label">GitHub</span>
+              <span class="contact-link-value">github.com/alexmercer</span>
+            </a>
+          </div>
+        </div>
+        <div class="contact-form-wrap">
+          <div class="form-field">
+            <label class="form-label">Name</label>
+            <input type="text" class="form-input" placeholder="Your name">
+          </div>
+          <div class="form-field">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-input" placeholder="your@email.com">
+          </div>
+          <div class="form-field">
+            <label class="form-label">Subject</label>
+            <input type="text" class="form-input" placeholder="What's it about?">
+          </div>
+          <div class="form-field">
+            <label class="form-label">Message</label>
+            <textarea class="form-textarea" placeholder="Tell me about your project…"></textarea>
+          </div>
+          <button class="form-submit" onclick="handleSubmit()">Send Message</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /page-home -->
+
+
+<!-- ══════════════════════════════════════
+     ABOUT PAGE
+══════════════════════════════════════ -->
+<div id="page-about" class="page">
+
+  <section class="block about-block">
+    <div class="block-inner">
+
+      <!-- Sidebar -->
+      <aside class="about-sidebar">
+        <div class="about-avatar">AM</div>
+        <div class="about-sidebar-name">Alex Mercer</div>
+        <div class="about-sidebar-role">Developer · Systems · Open Source</div>
+        <div style="font-size:13px; color: var(--zinc-500); line-height:1.6; font-weight:300;">Karachi, Pakistan · GMT+5</div>
+        <div class="about-sidebar-links">
+          <a class="about-sidebar-link" href="https://github.com/alexmercer" target="_blank">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 1a7 7 0 0 0-2.214 13.64c.35.064.478-.152.478-.338 0-.167-.006-.724-.01-1.31C4.01 13.368 3.61 12.16 3.61 12.16c-.318-.808-.778-1.024-.778-1.024-.636-.435.048-.426.048-.426.703.05 1.073.722 1.073.722.625 1.07 1.638.76 2.037.582.063-.453.244-.761.444-.937-1.555-.177-3.19-.777-3.19-3.462 0-.765.273-1.39.72-1.88-.072-.178-.312-.89.07-1.854 0 0 .588-.189 1.926.717A6.7 6.7 0 0 1 8 4.82c.595.003 1.194.08 1.754.237 1.336-.906 1.923-.717 1.923-.717.384.965.143 1.676.07 1.854.449.49.72 1.115.72 1.88 0 2.692-1.638 3.283-3.199 3.455.252.217.476.645.476 1.3 0 .937-.009 1.693-.009 1.923 0 .187.126.405.482.337A7 7 0 0 0 8 1z"/></svg>
+            github.com/alexmercer
+          </a>
+          <a class="about-sidebar-link" href="https://linkedin.com/in/alexmercer" target="_blank">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="1" width="14" height="14" rx="2"/><path d="M5.5 7v4M5.5 5v.5M8 11V7m0 0c0-1 .7-1.5 1.5-1.5S11 6.5 11 7.5V11"/></svg>
+            linkedin.com/in/alexmercer
+          </a>
+          <a class="about-sidebar-link" href="mailto:alex@mercer.dev">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="14" height="10" rx="1.5"/><path d="m1 4 7 5 7-5"/></svg>
+            alex@mercer.dev
+          </a>
+          <a class="about-sidebar-link" href="#" target="_blank">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12V4l6-2 6 2v8l-6 2-6-2z"/><path d="M8 2v12M2 7h12"/></svg>
+            Download CV / PDF
+          </a>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <div class="about-content">
+        <div class="block-label">Bio</div>
+
+        <h2>Background</h2>
+        <p>I'm a full-stack developer and systems engineer with seven years of professional experience building software across the stack — from database schemas to CLI tools to browser extensions. I grew up in Karachi and studied computer science at FAST-NUCES before moving into industry.</p>
+        <p>My work has ranged from <strong>early-stage product engineering</strong> at seed-stage startups to <strong>infrastructure work</strong> at companies with millions of users. I care deeply about the craft of software: the kind where the abstractions are honest, the error messages are human, and the thing actually works in production.</p>
+        <p>Outside of client work, I maintain several open-source projects and write regularly about systems thinking, developer tooling, and the intersection of design and engineering.</p>
+
+        <h2>What I Do</h2>
+        <p>I specialise in <strong>developer tooling, API design, and backend systems</strong>. I'm particularly interested in problems where performance, correctness, and ergonomics all matter at once — the kind of hard tradeoffs that most frameworks paper over.</p>
+        <p>On the frontend side, I work primarily with React and Next.js, with a strong bias toward accessibility and minimal runtime overhead. I've built design systems from scratch, shipped production Figma-to-code pipelines, and led the frontend architecture for a B2B SaaS used by 40+ enterprise clients.</p>
+
+        <div class="skills-grid">
+          <div class="skill-item">TypeScript</div>
+          <div class="skill-item">Rust</div>
+          <div class="skill-item">Go</div>
+          <div class="skill-item">Python</div>
+          <div class="skill-item">Next.js</div>
+          <div class="skill-item">PostgreSQL</div>
+          <div class="skill-item">Redis</div>
+          <div class="skill-item">Docker</div>
+          <div class="skill-item">Terraform</div>
+          <div class="skill-item">AWS / Fly.io</div>
+          <div class="skill-item">Linux / Nix</div>
+          <div class="skill-item">GraphQL</div>
+        </div>
+
+        <h2>Experience</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-year">2023 — Present</div>
+            <div class="timeline-role">Independent Consultant</div>
+            <div class="timeline-company">Self-employed · Remote</div>
+            <div class="timeline-desc">Technical consulting for seed and Series A startups. Architecture reviews, interim CTO engagements, and implementation work across backend systems and developer tooling.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2020 — 2023</div>
+            <div class="timeline-role">Senior Software Engineer</div>
+            <div class="timeline-company">Arq Systems · Karachi</div>
+            <div class="timeline-desc">Led infrastructure migration from Heroku to AWS, reduced p99 API latency by 68%, and built the internal design system adopted across three product lines.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2018 — 2020</div>
+            <div class="timeline-role">Software Engineer</div>
+            <div class="timeline-company">NimbleLabs · Lahore</div>
+            <div class="timeline-desc">Joined as the second engineering hire at a logistics SaaS. Built the real-time tracking pipeline processing 2M+ daily events and the admin dashboard used by 300+ carriers.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2014 — 2018</div>
+            <div class="timeline-role">BSc Computer Science</div>
+            <div class="timeline-company">FAST-NUCES · Karachi</div>
+            <div class="timeline-desc">Graduated with distinction. Final year project: distributed key-value store with Raft consensus. Teaching assistant for Data Structures and Algorithms for two semesters.</div>
+          </div>
+        </div>
+
+        <h2>Elsewhere</h2>
+        <p>When I'm not writing code, I'm usually reading about urban systems, listening to drone music, or attempting to grow tomatoes on a balcony that gets four hours of sun. I speak English, Urdu, and enough French to embarrass myself in Paris.</p>
+        <p>I'm always open to conversations about <strong>interesting problems</strong>, potential collaborations, or questions about open-source work. The best way to reach me is by email.</p>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="block contact-block">
+    <div class="block-inner" style="max-width:1080px; margin: 0 auto; padding: 3rem;">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+        <div>
+          <div class="block-label" style="margin-bottom:0.75rem;">Ready to talk?</div>
+          <p style="font-family:'Bebas Neue',sans-serif; font-size:36px; color:var(--zinc-100); letter-spacing:0.02em; line-height:1;">alex@mercer.dev</p>
+        </div>
+        <div style="display:flex; gap:1rem;">
+          <a href="https://linkedin.com/in/alexmercer" target="_blank" style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--zinc-400); border:1px solid var(--zinc-700); padding:12px 24px; text-decoration:none;">LinkedIn</a>
+          <a href="https://github.com/alexmercer" target="_blank" style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--zinc-900); background:var(--zinc-200); padding:12px 24px; text-decoration:none;">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /page-about -->
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-copy">© 2025 Alex Mercer. Built with intent.</div>
+  <ul class="footer-links">
+    <li><a onclick="showPage('home', null)">Home</a></li>
+    <li><a onclick="showPage('about', null)">About</a></li>
+    <li><a href="https://github.com/alexmercer" target="_blank">GitHub</a></li>
+    <li><a href="https://linkedin.com/in/alexmercer" target="_blank">LinkedIn</a></li>
+  </ul>
+</footer>
+
+<script>
+  function showPage(name, triggerEl) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page-' + name).classList.add('active');
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      a.classList.remove('active');
+      if (a.dataset.page === name) a.classList.add('active');
+    });
+    window.scrollTo({ top: 0 });
+  }
+
+  function scrollTo(selector) {
+    showPage('home', null);
+    setTimeout(() => {
+      const el = document.querySelector(selector);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 50);
+  }
+
+  function handleSubmit() {
+    const btn = document.querySelector('.form-submit');
+    btn.textContent = 'Message Sent ✓';
+    btn.style.background = 'var(--zinc-400)';
+    btn.style.color = 'var(--zinc-900)';
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.textContent = 'Send Message';
+      btn.style.background = '';
+      btn.style.color = '';
+      btn.disabled = false;
+    }, 3000);
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostItem from '../../components/PostItem.astro';
+
+/**
+ * When WORDPRESS_API_URL is set, this page will fetch from WP REST API.
+ * Until then it falls back to local content collection entries.
+ */
+const useWordPress = Boolean(import.meta.env.WORDPRESS_API_URL);
+
+let posts: Array<{ slug: string; title: string; excerpt: string; date: string; category: string }> = [];
+
+if (useWordPress) {
+  const { getWPPosts, formatWPDate, stripHtml, getCategoryNames } = await import('../../lib/wordpress');
+  const wpPosts = await getWPPosts(20);
+  posts = wpPosts.map((p) => ({
+    slug: p.slug,
+    title: stripHtml(p.title.rendered),
+    excerpt: stripHtml(p.excerpt.rendered),
+    date: p.date,
+    category: getCategoryNames(p)[0] ?? 'Uncategorized',
+  }));
+} else {
+  const local = await getCollection('posts');
+  posts = local
+    .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+    .map((p) => ({
+      slug: p.id,
+      title: p.data.title,
+      excerpt: p.data.excerpt,
+      date: p.data.date,
+      category: p.data.category,
+    }));
+}
+---
+
+<BaseLayout
+  title="Writing"
+  description="Thoughts on developer tooling, systems design, and the intersection of engineering and craft."
+>
+  <section class="block">
+    <div class="block-inner">
+      <div class="block-label">Writing</div>
+      <h1 class="section-heading">All Posts</h1>
+      <div class="blog-list">
+        {posts.map((post) => (
+          <PostItem
+            slug={post.slug}
+            date={post.date}
+            title={post.title}
+            excerpt={post.excerpt}
+            category={post.category}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .blog-list { border: 1px solid var(--zinc-200); }
+</style>

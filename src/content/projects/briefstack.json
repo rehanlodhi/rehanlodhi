@@ -1,0 +1,11 @@
+{
+  "number": "02",
+  "category": "Product",
+  "name": "Briefstack",
+  "description": "Async briefing tool for remote design teams. Structured brief templates, version diffs, and approval workflows without the bloat of project management suites.",
+  "stack": ["Next.js", "Supabase", "Vercel"],
+  "linkLabel": "Live Demo →",
+  "url": "https://github.com/rehanlodhi",
+  "featured": true,
+  "order": 2
+}

@@ -1,0 +1,11 @@
+{
+  "number": "03",
+  "category": "Infrastructure",
+  "name": "PgProxy",
+  "description": "Connection pooling proxy for Postgres that adds row-level audit logs, query rate limiting, and per-tenant isolation with zero application code changes.",
+  "stack": ["Go", "Postgres", "Docker"],
+  "linkLabel": "View Docs →",
+  "url": "https://github.com/rehanlodhi",
+  "featured": true,
+  "order": 3
+}

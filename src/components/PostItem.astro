@@ -1,0 +1,85 @@
+---
+interface Props {
+  slug: string;
+  date: string;
+  title: string;
+  excerpt: string;
+  category: string;
+}
+
+const { slug, date, title, excerpt, category } = Astro.props;
+
+const displayDate = new Date(date).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'short',
+});
+---
+
+<a class="blog-item" href={`/blog/${slug}`}>
+  <div class="blog-date">{displayDate}</div>
+  <div>
+    <div class="blog-title">{title}</div>
+    <div class="blog-excerpt">{excerpt}</div>
+  </div>
+  <div class="blog-category">{category}</div>
+</a>
+
+<style>
+  .blog-item {
+    display: grid;
+    grid-template-columns: 120px 1fr auto;
+    gap: 2rem;
+    align-items: start;
+    padding: 1.75rem 2rem;
+    border-bottom: 1px solid var(--zinc-200);
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.15s;
+  }
+
+  .blog-item:last-child { border-bottom: none; }
+  .blog-item:hover { background: var(--zinc-100); }
+
+  .blog-date {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--zinc-400);
+    padding-top: 3px;
+  }
+
+  .blog-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--zinc-900);
+    margin-bottom: 4px;
+  }
+
+  .blog-excerpt {
+    font-size: 13px;
+    color: var(--zinc-500);
+    font-weight: 300;
+    line-height: 1.5;
+  }
+
+  .blog-category {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--zinc-400);
+    border: 1px solid var(--zinc-200);
+    padding: 4px 10px;
+    white-space: nowrap;
+    align-self: start;
+  }
+
+  @media (max-width: 900px) {
+    .blog-item {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+
+    .blog-date { font-size: 10px; }
+  }
+</style>

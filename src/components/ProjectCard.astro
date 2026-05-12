@@ -1,0 +1,91 @@
+---
+interface Props {
+  number: string;
+  category: string;
+  name: string;
+  description: string;
+  stack: string[];
+  linkLabel: string;
+  url: string;
+}
+
+const { number, category, name, description, stack, linkLabel, url } = Astro.props;
+---
+
+<a class="project-card" href={url} target="_blank" rel="noopener noreferrer">
+  <div class="project-tag">{number} — {category}</div>
+  <div class="project-name">{name}</div>
+  <p class="project-desc">{description}</p>
+  <div class="project-stack">
+    {stack.map((tag) => <span class="stack-tag">{tag}</span>)}
+  </div>
+  <span class="project-arrow">{linkLabel}</span>
+</a>
+
+<style>
+  .project-card {
+    background: var(--zinc-50);
+    padding: 2rem;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: background 0.15s;
+  }
+
+  .project-card:hover { background: var(--zinc-100); }
+
+  .project-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--zinc-400);
+    margin-bottom: 1rem;
+  }
+
+  .project-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 0.02em;
+    color: var(--zinc-900);
+    line-height: 1;
+    margin-bottom: 0.75rem;
+  }
+
+  .project-desc {
+    font-size: 13px;
+    color: var(--zinc-500);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+  }
+
+  .project-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .stack-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: var(--zinc-600);
+    background: var(--zinc-100);
+    border: 1px solid var(--zinc-200);
+    padding: 3px 8px;
+  }
+
+  .project-arrow {
+    display: block;
+    margin-top: 1.5rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--zinc-400);
+    transition: color 0.15s;
+  }
+
+  .project-card:hover .project-arrow { color: var(--zinc-900); }
+</style>

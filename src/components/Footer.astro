@@ -1,0 +1,57 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer>
+  <div class="footer-copy">© {year} Rehan Lodhi. Built with intent.</div>
+  <ul class="footer-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="/blog">Writing</a></li>
+    <li><a href="https://github.com/rehanlodhi" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+    <li><a href="https://linkedin.com/in/rehanlodhi" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+  </ul>
+</footer>
+
+<style>
+  footer {
+    background: var(--zinc-950);
+    padding: 2rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-copy {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--zinc-700);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+
+  .footer-links a {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--zinc-600);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .footer-links a:hover { color: var(--zinc-300); }
+
+  @media (max-width: 900px) {
+    footer {
+      flex-direction: column;
+      gap: 1rem;
+      padding: 2rem 1.5rem;
+    }
+  }
+</style>

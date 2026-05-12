@@ -1,0 +1,306 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactBlock from '../components/ContactBlock.astro';
+
+const skills = [
+  'PHP', 'WordPress', 'WooCommerce', 'MySQL',
+  'REST APIs', 'ACF', 'JavaScript', 'React',
+  'HTML / CSS', 'Linux', 'Figma → Code', 'PhpStorm',
+];
+
+const timeline = [
+  {
+    period: 'Oct 2022 — Jan 2026',
+    role: 'WordPress Engineer',
+    company: 'IKONIC IT · Remote',
+    desc: 'Converted Figma designs into performant WordPress block templates, boosting performance scores by 17%. Built and integrated third-party APIs including custom cart popup functionality, contributing a 7% uplift in sales. Refactored the codebase to improve deployment workflows and built WP-Admin option pages for dynamic, data-driven content management.',
+  },
+  {
+    period: 'Oct 2021 — Apr 2022',
+    role: 'Software Engineer',
+    company: 'iEngineering · Islamabad',
+    desc: 'Provided end-to-end maintenance and support across cross-functional teams. Optimised code quality across a multisite setup, refactoring workflows to reduce page load times by 30%. Managed Linux server deployments and configurations including backups, scheduled crons, and resource utilisation.',
+  },
+];
+---
+
+<BaseLayout
+  title="About"
+  description="Software engineer based in Islamabad. PHP and backend at the core — fullstack when the project calls for it."
+>
+  <section class="block about-block">
+    <div class="block-inner">
+
+      <!-- Sidebar -->
+      <aside class="about-sidebar">
+        <div class="about-avatar">
+          <img src="/rehan-lodhi.png" alt="Rehan Lodhi" />
+        </div>
+        <div class="about-sidebar-name">Rehan Lodhi</div>
+        <div class="about-sidebar-role">Backend Engineer · PHP · Fullstack</div>
+        <p class="about-sidebar-location">Islamabad, Pakistan · GMT+5</p>
+        <nav class="about-sidebar-links" aria-label="Social links">
+          <a class="about-sidebar-link" href="https://github.com/rehanlodhi" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M8 1a7 7 0 0 0-2.214 13.64c.35.064.478-.152.478-.338 0-.167-.006-.724-.01-1.31C4.01 13.368 3.61 12.16 3.61 12.16c-.318-.808-.778-1.024-.778-1.024-.636-.435.048-.426.048-.426.703.05 1.073.722 1.073.722.625 1.07 1.638.76 2.037.582.063-.453.244-.761.444-.937-1.555-.177-3.19-.777-3.19-3.462 0-.765.273-1.39.72-1.88-.072-.178-.312-.89.07-1.854 0 0 .588-.189 1.926.717A6.7 6.7 0 0 1 8 4.82c.595.003 1.194.08 1.754.237 1.336-.906 1.923-.717 1.923-.717.384.965.143 1.676.07 1.854.449.49.72 1.115.72 1.88 0 2.692-1.638 3.283-3.199 3.455.252.217.476.645.476 1.3 0 .937-.009 1.693-.009 1.923 0 .187.126.405.482.337A7 7 0 0 0 8 1z"/>
+            </svg>
+            github.com/rehanlodhi
+          </a>
+          <a class="about-sidebar-link" href="https://linkedin.com/in/rehanlodhi" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="1" y="1" width="14" height="14" rx="2"/>
+              <path d="M5.5 7v4M5.5 5v.5M8 11V7m0 0c0-1 .7-1.5 1.5-1.5S11 6.5 11 7.5V11"/>
+            </svg>
+            linkedin.com/in/rehanlodhi
+          </a>
+          <a class="about-sidebar-link" href="mailto:rehanlodhi@live.com">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="1" y="3" width="14" height="10" rx="1.5"/>
+              <path d="m1 4 7 5 7-5"/>
+            </svg>
+            rehanlodhi@live.com
+          </a>
+          <a class="about-sidebar-link" href="/cv.pdf" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M2 12V4l6-2 6 2v8l-6 2-6-2z"/>
+              <path d="M8 2v12M2 7h12"/>
+            </svg>
+            Download CV / PDF
+          </a>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <article class="about-content">
+        <div class="block-label">Bio</div>
+
+        <h2>Background</h2>
+        <p>I'm a <strong>software engineer based in Islamabad</strong> with a deep focus on PHP and backend development. I've spent my career building the server-side layer of web applications — the APIs, the data models, the business logic, and the infrastructure that ties it all together. The parts users never see but always feel.</p>
+        <p>I work fullstack when the project calls for it, and I'm comfortable navigating a frontend codebase. But my instincts, my depth, and my strongest opinions live on the backend. That's where I do my best work.</p>
+        <p>I care about code that is honest about what it does — clear structure, sensible abstractions, and systems that don't collapse under real-world load.</p>
+
+        <h2>What I Do</h2>
+        <p>My core is <strong>PHP</strong> — REST APIs, relational database schemas, custom plugins, WooCommerce extensions, and the kind of backend work that keeps applications running reliably under real traffic. I design systems that are straightforward to maintain and extend.</p>
+        <p>On the frontend I work with JavaScript — React and standard HTML/CSS — enough to own a feature end-to-end without handing off every UI change. I approach frontend work pragmatically: get it right, keep it maintainable, don't over-engineer it.</p>
+
+        <div class="skills-grid" role="list" aria-label="Technical skills">
+          {skills.map((skill) => (
+            <div class="skill-item" role="listitem">{skill}</div>
+          ))}
+        </div>
+
+        <h2>Experience</h2>
+        <ol class="timeline" aria-label="Career timeline">
+          {timeline.map((item) => (
+            <li class="timeline-item">
+              <div class="timeline-year">{item.period}</div>
+              <div class="timeline-role">{item.role}</div>
+              <div class="timeline-company">{item.company}</div>
+              <p class="timeline-desc">{item.desc}</p>
+            </li>
+          ))}
+        </ol>
+
+        <h2>Elsewhere</h2>
+        <p>When I'm not writing code I'm usually reading — mostly about software architecture, engineering culture, or whatever technical rabbit hole I've fallen into that week. I enjoy breaking down how systems work and explaining them clearly, which is part of why I write.</p>
+        <p>I'm always open to conversations about <strong>interesting backend problems</strong>, potential collaborations, or just talking shop about PHP and API design. The best way to reach me is by email.</p>
+      </article>
+
+    </div>
+  </section>
+
+  <ContactBlock compact />
+</BaseLayout>
+
+<style>
+  .about-block .block-inner {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .about-sidebar {
+    position: sticky;
+    top: 80px;
+  }
+
+  .about-avatar {
+    width: 100%;
+    aspect-ratio: 1;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+    background: var(--zinc-900);
+  }
+
+  .about-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+
+  .about-sidebar-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    color: var(--zinc-900);
+    letter-spacing: 0.02em;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .about-sidebar-role {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--zinc-400);
+    margin-bottom: 1.5rem;
+  }
+
+  .about-sidebar-location {
+    font-size: 13px;
+    color: var(--zinc-500);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .about-sidebar-links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 1.5rem;
+  }
+
+  .about-sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--zinc-600);
+    text-decoration: none;
+    padding: 8px 12px;
+    border: 1px solid var(--zinc-200);
+    transition: border-color 0.15s, color 0.15s;
+  }
+
+  .about-sidebar-link:hover {
+    border-color: var(--zinc-900);
+    color: var(--zinc-900);
+  }
+
+  .about-sidebar-link svg {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+  }
+
+  .about-content h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px;
+    letter-spacing: 0.02em;
+    color: var(--zinc-900);
+    line-height: 1;
+    margin-bottom: 1.25rem;
+    margin-top: 3rem;
+  }
+
+  .about-content h2:first-of-type { margin-top: 0; }
+
+  .about-content p {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--zinc-600);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  .about-content p strong {
+    font-weight: 500;
+    color: var(--zinc-800);
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--zinc-200);
+    border: 1px solid var(--zinc-200);
+    margin: 1.5rem 0;
+  }
+
+  .skill-item {
+    background: var(--zinc-50);
+    padding: 1rem 1.25rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--zinc-600);
+  }
+
+  .timeline {
+    border-left: 2px solid var(--zinc-200);
+    padding-left: 2rem;
+    margin: 1.5rem 0;
+    list-style: none;
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 2rem;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -2.375rem;
+    top: 6px;
+    width: 8px;
+    height: 8px;
+    background: var(--zinc-200);
+    border: 2px solid var(--zinc-400);
+  }
+
+  .timeline-year {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: var(--zinc-400);
+    margin-bottom: 4px;
+  }
+
+  .timeline-role {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--zinc-900);
+    margin-bottom: 2px;
+  }
+
+  .timeline-company {
+    font-size: 13px;
+    color: var(--zinc-500);
+    font-weight: 300;
+    margin-bottom: 6px;
+  }
+
+  .timeline-desc {
+    font-size: 13px;
+    color: var(--zinc-500);
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 900px) {
+    .about-block .block-inner {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .about-sidebar { position: static; }
+
+    .skills-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>

@@ -1,0 +1,158 @@
+---
+const navLinks = [
+  { label: 'Home', href: '/' },
+  { label: 'Projects', href: '/#projects' },
+  { label: 'Writing', href: '/#writing' },
+  { label: 'About', href: '/about' },
+  { label: 'Contact', href: '/#contact' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<nav>
+  <a class="nav-logo" href="/">RL_</a>
+  <ul class="nav-links">
+    {navLinks.map((link) => (
+      <li>
+        <a
+          href={link.href}
+          class:list={[{ active: currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href.replace('/#', '/'))) }]}
+        >
+          {link.label}
+        </a>
+      </li>
+    ))}
+  </ul>
+  <div class="nav-socials">
+    <a href="https://linkedin.com/in/rehanlodhi" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    <a href="https://github.com/rehanlodhi" target="_blank" rel="noopener noreferrer">GitHub</a>
+  </div>
+  <button class="nav-hamburger" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<style>
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--zinc-50);
+    border-bottom: 1px solid var(--zinc-200);
+    padding: 0 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+  }
+
+  .nav-logo {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--zinc-900);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--zinc-500);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .nav-links a:hover,
+  .nav-links a.active {
+    color: var(--zinc-900);
+  }
+
+  .nav-socials {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .nav-socials a {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--zinc-500);
+    text-decoration: none;
+    border: 1px solid var(--zinc-200);
+    padding: 5px 12px;
+    transition: border-color 0.15s, color 0.15s;
+  }
+
+  .nav-socials a:hover {
+    border-color: var(--zinc-900);
+    color: var(--zinc-900);
+  }
+
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .nav-hamburger span {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background: var(--zinc-900);
+    transition: transform 0.2s, opacity 0.2s;
+  }
+
+  @media (max-width: 900px) {
+    nav {
+      padding: 0 1.5rem;
+      position: relative;
+    }
+
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 56px;
+      left: 0;
+      right: 0;
+      background: var(--zinc-50);
+      border-bottom: 1px solid var(--zinc-200);
+      flex-direction: column;
+      padding: 1.5rem;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .nav-links.open { display: flex; }
+
+    .nav-socials { display: none; }
+
+    .nav-hamburger { display: flex; }
+  }
+</style>
+
+<script>
+  const toggle = document.getElementById('nav-toggle');
+  const links = document.querySelector('.nav-links');
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = links?.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(isOpen));
+  });
+</script>

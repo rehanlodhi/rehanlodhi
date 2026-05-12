@@ -1,0 +1,11 @@
+{
+  "number": "06",
+  "category": "Research",
+  "name": "Coldframe",
+  "description": "Evaluation harness for cold-start recommendation systems. Reproducible benchmarks across matrix factorisation, graph neural nets, and LLM-based baselines.",
+  "stack": ["Python", "PyTorch", "DVC"],
+  "linkLabel": "Read Paper →",
+  "url": "https://github.com/rehanlodhi",
+  "featured": false,
+  "order": 6
+}

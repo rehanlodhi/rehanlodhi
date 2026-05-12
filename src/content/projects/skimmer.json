@@ -1,0 +1,11 @@
+{
+  "number": "05",
+  "category": "API",
+  "name": "Skimmer",
+  "description": "Lightweight RSS-to-webhook pipeline with content deduplication, full-text extraction, and structured output to Discord, Slack, or custom endpoints.",
+  "stack": ["Python", "Fly.io", "SQLite"],
+  "linkLabel": "Self-host Guide →",
+  "url": "https://github.com/rehanlodhi",
+  "featured": false,
+  "order": 5
+}

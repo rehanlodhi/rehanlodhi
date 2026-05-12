@@ -1,0 +1,210 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import PostItem from '../components/PostItem.astro';
+import ContactBlock from '../components/ContactBlock.astro';
+
+const allProjects = await getCollection('projects');
+const projects = allProjects.sort((a, b) => a.data.order - b.data.order);
+
+const allPosts = await getCollection('posts');
+const posts = allPosts
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+  .slice(0, 5);
+---
+
+<BaseLayout
+  title="Rehan Lodhi"
+  description="Software engineer based in Islamabad. PHP and backend at the core, fullstack in practice."
+>
+  <!-- HERO -->
+  <section class="block hero-block">
+    <div class="block-inner">
+      <div>
+        <h1 class="hero-heading">Rehan<br /><span>Lodhi</span></h1>
+        <p class="hero-bio">
+          <strong>Software engineer based in Islamabad</strong>, specialising in PHP and backend systems.
+          I design and build the parts of applications that most users never see —
+          APIs, databases, business logic, and the infrastructure that keeps it all running.
+          I work fullstack when the project needs it, but the backend is where I live.
+        </p>
+        <a class="hero-cta" href="/about">Read Full Bio →</a>
+      </div>
+      <aside class="hero-meta">
+        <div class="hero-meta-item">
+          <div class="hero-meta-label">Status</div>
+          <div class="hero-meta-value">Individual Contractor</div>
+        </div>
+        <div class="hero-meta-item">
+          <div class="hero-meta-label">Location</div>
+          <div class="hero-meta-value">Islamabad, PK</div>
+        </div>
+        <div class="hero-meta-item">
+          <div class="hero-meta-label">Focus</div>
+          <div class="hero-meta-value">PHP · Backend · Fullstack</div>
+        </div>
+        <div class="hero-meta-item">
+          <div class="hero-meta-label">Experience</div>
+          <div class="hero-meta-value">7+ years</div>
+        </div>
+        <div class="hero-meta-item">
+          <div class="hero-meta-label">Recent client</div>
+          <div class="hero-meta-value"><a href="https://www.ikonicit.com/" target="_blank" rel="noopener noreferrer">IKONIC IT</a></div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="block" id="projects">
+    <div class="block-inner">
+      <div class="block-label">Selected Work</div>
+      <h2 class="section-heading">Projects</h2>
+      <div class="projects-grid">
+        {projects.map((p) => (
+          <ProjectCard
+            number={p.data.number}
+            category={p.data.category}
+            name={p.data.name}
+            description={p.data.description}
+            stack={p.data.stack}
+            linkLabel={p.data.linkLabel}
+            url={p.data.url}
+          />
+        ))}
+      </div>
+      <a class="view-all" href="https://github.com/rehanlodhi" target="_blank" rel="noopener noreferrer">
+        All repositories on GitHub →
+      </a>
+    </div>
+  </section>
+
+  <!-- WRITING -->
+  <section class="block" id="writing">
+    <div class="block-inner">
+      <div class="block-label">Writing</div>
+      <h2 class="section-heading">Recent Posts</h2>
+      <div class="blog-list">
+        {posts.map((post) => (
+          <PostItem
+            slug={post.id}
+            date={post.data.date}
+            title={post.data.title}
+            excerpt={post.data.excerpt}
+            category={post.data.category}
+          />
+        ))}
+      </div>
+      <a class="view-all" href="/blog">All posts →</a>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <ContactBlock />
+</BaseLayout>
+
+<style>
+  .hero-block { background: var(--zinc-50); }
+
+  .hero-block .block-inner {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 4rem;
+    align-items: end;
+  }
+
+  .hero-heading {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(72px, 10vw, 120px);
+    line-height: 0.92;
+    letter-spacing: 0.01em;
+    color: var(--zinc-900);
+    margin-bottom: 2rem;
+  }
+
+  .hero-heading span { color: var(--zinc-400); }
+
+  .hero-bio {
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--zinc-600);
+    font-weight: 300;
+    max-width: 520px;
+  }
+
+  .hero-bio strong {
+    font-weight: 500;
+    color: var(--zinc-800);
+  }
+
+  .hero-cta {
+    display: inline-block;
+    margin-top: 2rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--zinc-50);
+    background: var(--zinc-900);
+    padding: 13px 28px;
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+
+  .hero-cta:hover { background: var(--zinc-700); }
+
+  .hero-meta {
+    border-left: 2px solid var(--zinc-200);
+    padding-left: 2rem;
+  }
+
+  .hero-meta-item { margin-bottom: 1.5rem; }
+
+  .hero-meta-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--zinc-400);
+    margin-bottom: 4px;
+  }
+
+  .hero-meta-value {
+    font-size: 14px;
+    color: var(--zinc-700);
+    font-weight: 400;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--zinc-200);
+    border: 1px solid var(--zinc-200);
+  }
+
+  .blog-list {
+    border: 1px solid var(--zinc-200);
+  }
+
+  @media (max-width: 900px) {
+    .hero-block .block-inner {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .hero-meta {
+      border-left: none;
+      border-top: 1px solid var(--zinc-200);
+      padding-left: 0;
+      padding-top: 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .projects-grid { grid-template-columns: 1fr; }
+  }
+</style>
