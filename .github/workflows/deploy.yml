@@ -40,5 +40,5 @@ jobs:
 
       - name: Sync to VPS
         run: |
-          rsync -avz --delete dist/ \
+          rsync -avzO --delete dist/ \
             ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:${{ secrets.VPS_PATH }}
