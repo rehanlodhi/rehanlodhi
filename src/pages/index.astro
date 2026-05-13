@@ -42,7 +42,7 @@ const posts = allPosts
         </div>
         <div class="hero-meta-item">
           <div class="hero-meta-label">Focus</div>
-          <div class="hero-meta-value">PHP · Backend · Fullstack</div>
+          <div class="hero-meta-value">Backend · PHP · Python · AI</div>
         </div>
         <div class="hero-meta-item">
           <div class="hero-meta-label">Experience</div>
@@ -71,6 +71,7 @@ const posts = allPosts
             stack={p.data.stack}
             linkLabel={p.data.linkLabel}
             url={p.data.url}
+            caseStudySlug={p.data.hasCaseStudy ? p.id : undefined}
           />
         ))}
       </div>

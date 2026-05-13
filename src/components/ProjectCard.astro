@@ -7,19 +7,29 @@ interface Props {
   stack: string[];
   linkLabel: string;
   url: string;
+  caseStudySlug?: string;
 }
 
-const { number, category, name, description, stack, linkLabel, url } = Astro.props;
+const { number, category, name, description, stack, linkLabel, url, caseStudySlug } = Astro.props;
+
+const href = caseStudySlug ? `/projects/${caseStudySlug}` : url;
+const label = caseStudySlug ? 'Case Study →' : linkLabel;
+const isExternal = !caseStudySlug;
 ---
 
-<a class="project-card" href={url} target="_blank" rel="noopener noreferrer">
+<a
+  class="project-card"
+  href={href}
+  target={isExternal ? '_blank' : undefined}
+  rel={isExternal ? 'noopener noreferrer' : undefined}
+>
   <div class="project-tag">{number} — {category}</div>
   <div class="project-name">{name}</div>
   <p class="project-desc">{description}</p>
   <div class="project-stack">
     {stack.map((tag) => <span class="stack-tag">{tag}</span>)}
   </div>
-  <span class="project-arrow">{linkLabel}</span>
+  <span class="project-arrow">{label}</span>
 </a>
 
 <style>

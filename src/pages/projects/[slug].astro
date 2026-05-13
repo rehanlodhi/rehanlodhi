@@ -1,0 +1,261 @@
+---
+import { getCollection, getEntry, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContactBlock from '../../components/ContactBlock.astro';
+
+export async function getStaticPaths() {
+  const caseStudies = await getCollection('caseStudies');
+  return caseStudies.map((cs) => ({
+    params: { slug: cs.id },
+    props: { caseStudy: cs },
+  }));
+}
+
+const { caseStudy } = Astro.props;
+const project = await getEntry('projects', caseStudy.id);
+const { Content } = await render(caseStudy);
+---
+
+<BaseLayout
+  title={project?.data.name ?? caseStudy.id}
+  description={project?.data.description}
+>
+  <article>
+    <header class="cs-header block">
+      <div class="block-inner">
+        <div class="cs-meta">
+          <a href="/#projects" class="cs-back">← Projects</a>
+          {project && <span class="cs-category">{project.data.number} — {project.data.category}</span>}
+        </div>
+        <h1 class="cs-title">{project?.data.name ?? caseStudy.id}</h1>
+        {project && (
+          <div class="cs-stack">
+            {project.data.stack.map((tag) => <span class="stack-tag">{tag}</span>)}
+          </div>
+        )}
+      </div>
+    </header>
+
+    {caseStudy.data.heroImage && (
+      <div class="cs-hero block">
+        <div class="block-inner">
+          <img src={caseStudy.data.heroImage} alt={`${project?.data.name} screenshot`} class="cs-hero-img" />
+        </div>
+      </div>
+    )}
+
+    <div class="cs-body block">
+      <div class="block-inner cs-content">
+        <Content />
+      </div>
+    </div>
+
+    {project && (
+      <div class="cs-cta block">
+        <div class="block-inner cs-cta-inner">
+          <a class="cs-cta-link" href={project.data.url} target="_blank" rel="noopener noreferrer">
+            {project.data.linkLabel}
+          </a>
+          <a class="cs-back-bottom" href="/#projects">← Back to projects</a>
+        </div>
+      </div>
+    )}
+  </article>
+
+  <ContactBlock compact />
+</BaseLayout>
+
+<style>
+  .cs-header { background: var(--zinc-50); }
+
+  .cs-header .block-inner {
+    padding-top: 4rem;
+    padding-bottom: 3rem;
+  }
+
+  .cs-meta {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .cs-back {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--zinc-500);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .cs-back:hover { color: var(--zinc-900); }
+
+  .cs-category {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--zinc-400);
+    border: 1px solid var(--zinc-200);
+    padding: 4px 10px;
+  }
+
+  .cs-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 6vw, 88px);
+    letter-spacing: 0.01em;
+    color: var(--zinc-900);
+    line-height: 1;
+    margin-bottom: 1.5rem;
+  }
+
+  .cs-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .stack-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: var(--zinc-600);
+    background: var(--zinc-100);
+    border: 1px solid var(--zinc-200);
+    padding: 4px 10px;
+  }
+
+  .cs-hero .block-inner { padding-top: 0; padding-bottom: 0; }
+
+  .cs-hero-img {
+    width: 100%;
+    display: block;
+    border: 1px solid var(--zinc-200);
+  }
+
+  .cs-content {
+    max-width: 720px;
+  }
+
+  .cs-content :global(p) {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--zinc-600);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+
+  .cs-content :global(h2) {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    color: var(--zinc-900);
+    letter-spacing: 0.02em;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    line-height: 1;
+  }
+
+  .cs-content :global(h3) {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--zinc-800);
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .cs-content :global(ul),
+  .cs-content :global(ol) {
+    padding-left: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--zinc-600);
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.8;
+  }
+
+  .cs-content :global(li) { margin-bottom: 0.4rem; }
+
+  .cs-content :global(code) {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    background: var(--zinc-100);
+    border: 1px solid var(--zinc-200);
+    padding: 2px 6px;
+    color: var(--zinc-800);
+  }
+
+  .cs-content :global(pre) {
+    background: var(--zinc-900);
+    border: 1px solid var(--zinc-800);
+    padding: 1.5rem;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+  }
+
+  .cs-content :global(pre code) {
+    background: none;
+    border: none;
+    padding: 0;
+    color: var(--zinc-200);
+    font-size: 13px;
+  }
+
+  .cs-content :global(img) {
+    width: 100%;
+    border: 1px solid var(--zinc-200);
+    margin: 1.5rem 0;
+    display: block;
+  }
+
+  .cs-content :global(blockquote) {
+    border-left: 3px solid var(--zinc-300);
+    padding-left: 1.5rem;
+    margin: 1.5rem 0;
+    color: var(--zinc-500);
+    font-style: italic;
+  }
+
+  .cs-content :global(a) {
+    color: var(--zinc-900);
+    text-underline-offset: 3px;
+  }
+
+  .cs-cta { border-top: 1px solid var(--zinc-200); }
+
+  .cs-cta-inner {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .cs-cta-link {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--zinc-50);
+    background: var(--zinc-900);
+    padding: 13px 28px;
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+
+  .cs-cta-link:hover { background: var(--zinc-700); }
+
+  .cs-back-bottom {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--zinc-500);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .cs-back-bottom:hover { color: var(--zinc-900); }
+</style>

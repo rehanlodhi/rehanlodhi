@@ -1,5 +1,6 @@
-import { defineCollection, z } from 'astro:content';
-import { glob, file } from 'astro/loaders';
+import { defineCollection } from 'astro:content';
+import { glob } from 'astro/loaders';
+import { z } from 'zod';
 
 const projects = defineCollection({
   loader: glob({ pattern: '**/*.json', base: './src/content/projects' }),
@@ -13,6 +14,14 @@ const projects = defineCollection({
     url: z.string().url(),
     featured: z.boolean().default(false),
     order: z.number(),
+    hasCaseStudy: z.boolean().default(false),
+  }),
+});
+
+const caseStudies = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/case-studies' }),
+  schema: z.object({
+    heroImage: z.string().optional(),
   }),
 });
 
@@ -27,4 +36,4 @@ const posts = defineCollection({
   }),
 });
 
-export const collections = { projects, posts };
+export const collections = { projects, caseStudies, posts };
