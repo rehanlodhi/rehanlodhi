@@ -1,0 +1,464 @@
+@mixin hard-shadow($offset: var(--wp--custom--hard-shadow--offset)) {
+	box-shadow: $offset $offset 0 var(--wp--custom--hard-shadow--color);
+}
+
+// Without this, any element combining width:100% with padding (content-box
+// is the browser default) renders wider than its container and can push the
+// whole document into horizontal scroll — this is what caused the contact
+// section overflow.
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+// Smooth in-page scrolling for the nav's #projects/#writing/#contact anchor
+// links. scroll-padding-top keeps the target section clear of the sticky
+// header instead of landing partially underneath it.
+html {
+	scroll-behavior: smooth;
+	scroll-padding-top: var(--wp--custom--layout--nav-height);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+}
+
+// Core emits `:where(.wp-site-blocks) > * { margin-block-start: 24px; }`
+// (fallback for an unset theme.json root blockGap) which adds unwanted
+// space between the header/main/footer template parts. `:where()` has zero
+// specificity specifically so this plain selector overrides it — no
+// !important needed, and it doesn't touch --wp--style--block-gap itself,
+// so internal flow spacing elsewhere is untouched.
+.wp-site-blocks > * {
+	margin-block-start: 0;
+}
+
+// Sticky header. position:sticky only has room to actually stick within its
+// IMMEDIATE parent's box — WP's auto-generated `<header class="wp-block-
+// template-part">` wrapper is exactly as tall as its .site-header child,
+// leaving zero scroll range, so putting sticky on .site-header itself (or
+// its children) doesn't work (verified live: it scrolled away entirely past
+// ~46px of scroll). core/template-part doesn't declare `supports.position`,
+// so there's no block-attribute path to this wrapper tag either — plain CSS
+// on it is the only option. Mirrors the same admin-bar-aware top offset WP's
+// own position support uses, via --wp-admin--admin-bar--height (set on
+// <html> by WP core's admin-bar stylesheet, so it's reachable from any
+// ancestor — unlike --wp-admin--admin-bar--position-offset, which only
+// cascades to descendants of .is-position-sticky elements).
+header.wp-block-template-part {
+	position: sticky;
+	top: var(--wp-admin--admin-bar--height, 0px);
+	z-index: 20;
+}
+
+.site-header {
+	// Nav links: muted at rest, heading color on hover/active.
+	.wp-block-navigation a {
+		color: var(--wp--preset--color--muted);
+
+		&:hover {
+			color: var(--wp--preset--color--heading);
+		}
+	}
+
+	.wp-block-navigation .current-menu-item > a {
+		color: var(--wp--preset--color--heading);
+	}
+}
+
+// Flat, zero-radius "hard-border" utilities — no native theme.json/block.json
+// equivalent for the offset shadow + press animation, so this is real CSS.
+.is-style-hard-fill,
+.is-style-hard-outline,
+.is-style-hard-card,
+.is-style-hard-post,
+.hard-tag {
+	border-radius: 0 !important;
+}
+
+.is-style-hard-fill .wp-block-button__link,
+.is-style-hard-outline .wp-block-button__link {
+	border: var(--wp--custom--hard-border--width) solid var(--wp--custom--hard-border--color);
+	@include hard-shadow;
+	transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.15s ease;
+
+	// Gentle 2px nudge on hover (shadow shrinks by the same amount);
+	// full press only while active.
+	&:hover {
+		transform: translate(2px, 2px);
+		box-shadow: calc(var(--wp--custom--hard-shadow--offset) - 2px) calc(var(--wp--custom--hard-shadow--offset) - 2px) 0 var(--wp--custom--hard-shadow--color);
+	}
+
+	&:active {
+		transform: translate(var(--wp--custom--hard-shadow--offset), var(--wp--custom--hard-shadow--offset));
+		box-shadow: 0 0 0 var(--wp--custom--hard-shadow--color);
+	}
+}
+
+.is-style-hard-fill .wp-block-button__link {
+	background-color: var(--wp--preset--color--fill);
+	color: var(--wp--preset--color--action-on-fill);
+
+	&:hover {
+		background-color: var(--wp--preset--color--fill-hover);
+	}
+}
+
+.is-style-hard-outline .wp-block-button__link {
+	background-color: var(--wp--preset--color--surface-card);
+	color: var(--wp--preset--color--heading);
+
+	&:hover {
+		background-color: var(--wp--preset--color--surface-card-hover);
+	}
+}
+
+// Static modifier: keep the offset border/shadow, drop all hover/press motion.
+.hard-static .wp-block-button__link {
+	&:hover,
+	&:active {
+		transform: none;
+		@include hard-shadow;
+	}
+}
+
+.is-style-hard-card,
+.is-style-hard-post {
+	border: var(--wp--custom--hard-border--width) solid var(--wp--custom--hard-border--color);
+	transition: background-color 0.15s ease;
+}
+
+.is-style-hard-card {
+	@include hard-shadow;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	box-sizing: border-box;
+
+	// Preset background classes are emitted with !important, so the hover
+	// swap needs it too.
+	&:hover {
+		background-color: var(--wp--preset--color--surface-card-hover) !important;
+	}
+
+	.card-tags {
+		margin-top: auto;
+		gap: 6px;
+	}
+}
+
+.is-style-hard-post {
+	@include hard-shadow(var(--wp--custom--hard-shadow--offset-small));
+	display: flex;
+	flex-direction: column;
+	// Children stretch to the card's width (flex default) so the nowrap
+	// excerpt clamps at the card edge instead of dictating its own width.
+	gap: var(--wp--preset--spacing--space-3);
+	padding: 1.5rem 1.75rem !important;
+
+	// The tag is the one child that must not stretch full width.
+	> .hard-tag {
+		align-self: flex-start;
+	}
+
+	&:hover {
+		background-color: var(--wp--preset--color--surface-card-hover) !important;
+	}
+
+	// The nowrap excerpt text needs its DIRECT flex-item ancestor to opt out
+	// of the default `min-width: auto` (which sizes to the widest descendant's
+	// intrinsic/unwrapped content) — setting it on .wp-block-post-excerpt
+	// alone doesn't help, since that's a grandchild, not the flex item itself.
+	.post-row-body {
+		min-width: 0;
+		max-width: 100%;
+	}
+
+	.wp-block-post-excerpt__excerpt {
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+}
+
+.hard-tag {
+	display: inline-flex;
+	align-items: center;
+	border: var(--wp--custom--hard-border--width) solid var(--wp--custom--hard-border--color);
+	font-family: var(--wp--preset--font-family--mono);
+	text-transform: uppercase;
+	letter-spacing: var(--wp--custom--tracking--label);
+	font-size: var(--wp--preset--font-size--label-xxs);
+	padding: 4px 10px;
+	background: var(--wp--preset--color--surface-card);
+	color: var(--wp--preset--color--heading);
+}
+
+.hard-avatar {
+	border-radius: 50%;
+	position: relative;
+
+	&::after {
+		content: "";
+		position: absolute;
+		inset: -4px;
+		border-radius: 50%;
+		border: var(--wp--custom--hard-border--width) solid var(--wp--custom--hard-border--color);
+	}
+}
+
+.hard-frame {
+	border: var(--wp--custom--hard-border--width) solid var(--wp--custom--hard-border--color);
+	@include hard-shadow;
+	overflow: hidden;
+	background: var(--wp--preset--color--zinc-900);
+
+	img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center top;
+	}
+}
+
+// About sidebar: bordered icon/link rows.
+.icon-row {
+	border: 1px solid var(--wp--preset--color--border-default);
+	padding: var(--wp--preset--spacing--space-3) var(--wp--preset--spacing--space-4);
+	margin: 0;
+
+	a {
+		font-family: var(--wp--preset--font-family--mono);
+		font-size: var(--wp--preset--font-size--label-xs);
+		letter-spacing: var(--wp--custom--tracking--label-tight);
+		text-transform: uppercase;
+		color: var(--wp--preset--color--muted);
+	}
+
+	&:hover {
+		border-color: var(--wp--preset--color--border-strong);
+
+		a {
+			color: var(--wp--preset--color--heading);
+		}
+	}
+}
+
+// About experience timeline: left rail with square markers.
+.timeline-rail {
+	border-left: var(--wp--custom--hard-border--width) solid var(--wp--preset--color--border-strong);
+	padding-left: 2rem;
+}
+
+.timeline-item {
+	position: relative;
+
+	&::before {
+		content: "";
+		position: absolute;
+		left: calc(-2rem - 7px);
+		top: 5px;
+		width: 12px;
+		height: 12px;
+		background: var(--wp--preset--color--surface-page);
+		border: var(--wp--custom--hard-border--width) solid var(--wp--preset--color--border-strong);
+	}
+}
+
+// Section eyebrow: label + short rule, per the BlockSection design spec.
+.eyebrow {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	font-family: var(--wp--preset--font-family--mono);
+	font-size: var(--wp--preset--font-size--label-xs);
+	letter-spacing: var(--wp--custom--tracking--label-loose);
+	text-transform: uppercase;
+	color: var(--wp--preset--color--faint);
+
+	&::after {
+		content: "";
+		display: block;
+		height: 1px;
+		width: 48px;
+		background: var(--wp--preset--color--zinc-300);
+	}
+
+	&.eyebrow--on-dark {
+		color: var(--wp--preset--color--on-dark-faint);
+
+		&::after {
+			background: var(--wp--preset--color--on-dark-border-strong);
+		}
+	}
+}
+
+// Contact rows: stacked on the raised dark surface with 1px seams between
+// them (the container's dark background shows through the gap). Intentionally
+// no hover effect.
+.contact-rows {
+	gap: 1px !important;
+	align-items: stretch !important;
+
+	> p {
+		margin: 0;
+		width: 100%;
+		background: var(--wp--preset--color--surface-dark-raised);
+		padding: var(--wp--preset--spacing--space-5) var(--wp--preset--spacing--space-6);
+
+		a {
+			color: var(--wp--preset--color--on-dark-body);
+			text-decoration: none;
+		}
+	}
+}
+
+// ── Mobile-first responsive rules ──────────────────────────────────────
+// Base (unqualified) rules are the small-screen styles. Only min-width
+// queries are used from here down; each larger breakpoint overrides the
+// previous one via normal cascade order, never a max-width upper bound.
+
+// Block padding rhythm: tightest by default, opens up as viewport grows.
+:root {
+	--wp--preset--spacing--block-padding-x: 16px;
+}
+
+@media (min-width: 601px) {
+	:root {
+		--wp--preset--spacing--block-padding-x: 24px;
+	}
+}
+
+@media (min-width: 901px) {
+	:root {
+		--wp--preset--spacing--block-padding-x: 48px;
+	}
+}
+
+// Header: overlayMenu is "never", so nav items must stay visible at every
+// width — there's no room for wordmark + 5 links + 2 pills on one line on
+// small screens, so 2 rows (wordmark + pills, then full-width nav) is the
+// default; collapses to a single row from 601px up.
+.site-header > .wp-block-group {
+	flex-wrap: wrap !important;
+	row-gap: var(--wp--preset--spacing--space-3);
+}
+
+.site-header .site-wordmark {
+	order: 1;
+}
+
+.site-header .wp-block-navigation {
+	order: 2;
+	flex-basis: 100%;
+	width: 100%;
+
+	.wp-block-navigation__container {
+		justify-content: space-between !important;
+		width: 100%;
+		gap: clamp(4px, 2vw, 12px) !important;
+	}
+
+	.wp-block-navigation-item__content {
+		font-size: clamp(9px, 2.6vw, 12px) !important;
+		letter-spacing: 0.06em !important;
+		padding: 0 !important;
+		white-space: nowrap;
+	}
+}
+
+// Footer: stacked 2-row by default (copyright, then link nav) — deliberate
+// and predictable, rather than leaving flex-wrap to reflow unevenly (which
+// could wrap individual nav links onto their own lines). Single row from
+// 601px up.
+.footer-row {
+	flex-wrap: wrap !important;
+	row-gap: var(--wp--preset--spacing--space-4);
+}
+
+.footer-copyright {
+	flex-basis: 100%;
+}
+
+.site-footer .wp-block-navigation {
+	flex-basis: 100%;
+
+	.wp-block-navigation__container {
+		justify-content: flex-start !important;
+	}
+}
+
+@media (min-width: 601px) {
+	.footer-row {
+		flex-wrap: nowrap !important;
+		row-gap: 0;
+	}
+
+	.footer-copyright {
+		flex-basis: auto;
+	}
+
+	.site-footer .wp-block-navigation {
+		flex-basis: auto;
+
+		.wp-block-navigation__container {
+			justify-content: flex-end !important;
+		}
+	}
+}
+
+@media (min-width: 601px) {
+	.site-header > .wp-block-group {
+		flex-wrap: nowrap !important;
+		row-gap: 0;
+	}
+
+	.site-header .site-wordmark,
+	.site-header .wp-block-navigation {
+		order: initial;
+	}
+
+	.site-header .wp-block-navigation {
+		flex-basis: auto;
+		width: auto;
+
+		.wp-block-navigation__container {
+			justify-content: flex-end !important;
+			width: auto;
+			gap: var(--wp--preset--spacing--space-7) !important;
+		}
+
+		.wp-block-navigation-item__content {
+			font-size: var(--wp--preset--font-size--label-sm) !important;
+			letter-spacing: var(--wp--custom--tracking--label) !important;
+			white-space: normal;
+		}
+	}
+}
+
+// Project grid: 1-col by default (core already stacks columns below its own
+// 782px breakpoint), 2-col from 782px, 3-col from 1101px.
+@media (min-width: 782px) {
+	.project-grid.wp-block-columns {
+		flex-wrap: wrap;
+
+		> .wp-block-column {
+			flex-basis: 48%;
+		}
+	}
+}
+
+@media (min-width: 1101px) {
+	.project-grid.wp-block-columns {
+		flex-wrap: nowrap;
+
+		> .wp-block-column {
+			flex-basis: 0;
+			flex-grow: 1;
+		}
+	}
+}

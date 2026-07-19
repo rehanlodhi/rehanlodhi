@@ -1,0 +1,49 @@
+name: Publish Website
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  web-deploy:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get Latest Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'latest'
+          cache: 'npm'
+
+      - name: Run Build
+        run: |
+          npm install
+          npm run build
+
+      - name: Sync Files (Native rsync)
+        env:
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+        run: |
+          # 1. Start the SSH agent and add your private key
+          eval $(ssh-agent -s)
+          echo "$SSH_KEY" | tr -d '\r' | ssh-add -
+          
+          # 2. Create the .ssh directory just in case
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+
+          # 3. Deploy via rsync
+          rsync -avz --delete \
+            --exclude='/node_modules' \
+            --exclude='/src' \
+            --exclude='.git*' \
+            -e "ssh -o StrictHostKeyChecking=no" \
+            ./ rehanlodhi@rehanlodhi.com:/home/sites/dev.rehanlodhi.com/public/wp-content/themes/rehan-lodhi
+          
+          # 4. Kill the agent for clean exit
+          ssh-agent -k
