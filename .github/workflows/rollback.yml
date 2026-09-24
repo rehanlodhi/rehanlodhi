@@ -1,0 +1,58 @@
+name: Rollback Production Theme
+
+# Re-points the live wp-content/themes/rehan-lodhi symlink at a release
+# that's still on disk under /home/rehanlodhi/releases/rehan-lodhi — no
+# rebuild, no rsync, just an atomic symlink flip. Only the last 5 releases
+# (per release.yml) are kept, so this only works for tags still retained.
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag to roll back to, e.g. v1.2.0 (must still exist on the server)'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  rollback:
+    name: Repoint Theme Symlink
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Roll back via SSH
+        env:
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+          RELEASES_ROOT: /home/rehanlodhi/releases/rehan-lodhi
+          THEME_LINK: /home/rehanlodhi/server/sites/rehanlodhi.com/public/wp-content/themes/rehan-lodhi
+          TAG: ${{ inputs.tag }}
+        run: |
+          # Validate before it's embedded in a remote shell command below —
+          # a stray quote in a hand-typed input could otherwise break out
+          # of the heredoc and inject commands into the SSH session.
+          if ! [[ "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "Invalid tag '$TAG' — expected format vX.Y.Z" >&2
+            exit 1
+          fi
+
+          eval $(ssh-agent -s)
+          echo "$SSH_KEY" | tr -d '\r' | ssh-add -
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+
+          RELEASE_DIR="${RELEASES_ROOT}/${TAG}"
+
+          ssh -o StrictHostKeyChecking=no rehanlodhi@rehanlodhi.com bash -s <<EOF
+            set -euo pipefail
+            if [ ! -d "${RELEASE_DIR}" ]; then
+              echo "No release at ${RELEASE_DIR} — it may have been pruned (only the last 5 are kept)." >&2
+              echo "Available releases:" >&2
+              ls -1 "${RELEASES_ROOT}" >&2
+              exit 1
+            fi
+            ln -sfn "${RELEASE_DIR}" "${THEME_LINK}"
+            echo "Rolled back ${THEME_LINK} -> ${RELEASE_DIR}"
+          EOF
+
+          ssh-agent -k

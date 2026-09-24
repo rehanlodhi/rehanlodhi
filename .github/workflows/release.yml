@@ -1,0 +1,113 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Build, Package, and Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get Latest Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'latest'
+          cache: 'npm'
+
+      - name: Run Build
+        run: |
+          npm install
+          npm run build
+
+      - name: Package Theme Zip
+        run: |
+          # Stage a clean copy under the "rehan-lodhi" folder name so the
+          # zip extracts straight into wp-content/themes/rehan-lodhi.
+          mkdir -p /tmp/release/rehan-lodhi
+          rsync -a \
+            --exclude='/node_modules' \
+            --exclude='/src' \
+            --exclude='.git*' \
+            --exclude='/.github' \
+            ./ /tmp/release/rehan-lodhi/
+          cd /tmp/release
+          zip -r "${GITHUB_WORKSPACE}/rehan-lodhi-${GITHUB_REF_NAME}.zip" rehan-lodhi
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: ${{ github.ref_name }}
+          files: rehan-lodhi-${{ github.ref_name }}.zip
+          generate_release_notes: true
+
+      - name: Deploy to Production (versioned release + symlink)
+        env:
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+          RELEASES_ROOT: /home/rehanlodhi/releases/rehan-lodhi
+          THEME_LINK: /home/rehanlodhi/server/sites/rehanlodhi.com/public/wp-content/themes/rehan-lodhi
+          KEEP_RELEASES: 5
+        run: |
+          # 1. Start the SSH agent and add your private key
+          eval $(ssh-agent -s)
+          echo "$SSH_KEY" | tr -d '\r' | ssh-add -
+
+          # 2. Create the .ssh directory just in case
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+
+          RELEASE_DIR="${RELEASES_ROOT}/${GITHUB_REF_NAME}"
+
+          # 3. Rsync the build into its own tag-named release directory —
+          #    never into the live theme path directly, so the site keeps
+          #    serving the previous release until the symlink flips below.
+          ssh -o StrictHostKeyChecking=no rehanlodhi@rehanlodhi.com "mkdir -p '${RELEASE_DIR}'"
+          rsync -avz --delete \
+            --exclude='/node_modules' \
+            --exclude='/src' \
+            --exclude='.git*' \
+            -e "ssh -o StrictHostKeyChecking=no" \
+            ./ "rehanlodhi@rehanlodhi.com:${RELEASE_DIR}/"
+
+          # 4. Atomically point wp-content/themes/rehan-lodhi at the new
+          #    release, then prune old releases beyond KEEP_RELEASES —
+          #    but never the one currently live, so a rollback target
+          #    can't be pruned out from under a manual re-point.
+          ssh -o StrictHostKeyChecking=no rehanlodhi@rehanlodhi.com bash -s <<EOF
+            set -euo pipefail
+
+            THEME_LINK="${THEME_LINK}"
+            RELEASES_ROOT="${RELEASES_ROOT}"
+            RELEASE_DIR="${RELEASE_DIR}"
+            KEEP_RELEASES="${KEEP_RELEASES}"
+
+            # First run only: the live path is a real directory from the
+            # original deploy.sh copy, not yet a symlink — move it aside
+            # instead of deleting it.
+            if [ -e "\${THEME_LINK}" ] && [ ! -L "\${THEME_LINK}" ]; then
+              mv "\${THEME_LINK}" "\${THEME_LINK}.pre-release-backup"
+            fi
+
+            ln -sfn "\${RELEASE_DIR}" "\${THEME_LINK}"
+
+            # Sort by tag (semver), not mtime — rsync -a carries the
+            # source dir's timestamp over, so mtime doesn't reflect
+            # deploy order. Whatever the symlink now points at is always
+            # protected, even if it's an older tag from a rollback.
+            cd "\${RELEASES_ROOT}"
+            CURRENT="\$(basename "\$(readlink -f "\${THEME_LINK}")")"
+            ls -1d */ 2>/dev/null | sed 's#/\$##' | sort -rV | tail -n "+\$((KEEP_RELEASES + 1))" | while read -r old; do
+              [ "\${old}" != "\${CURRENT}" ] && rm -rf "\${old}"
+            done
+          EOF
+
+          # 5. Kill the agent for clean exit
+          ssh-agent -k
