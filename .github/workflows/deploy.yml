@@ -28,11 +28,14 @@ jobs:
       - name: Sync Files (Native rsync)
         env:
           SSH_KEY: ${{ secrets.SSH_KEY }}
+          SSH_USER: ${{ vars.SSH_USER }}
+          SSH_HOST: ${{ vars.SSH_HOST }}
+          DEV_THEME_PATH: ${{ vars.DEV_THEME_PATH }}
         run: |
           # 1. Start the SSH agent and add your private key
           eval $(ssh-agent -s)
           echo "$SSH_KEY" | tr -d '\r' | ssh-add -
-          
+
           # 2. Create the .ssh directory just in case
           mkdir -p ~/.ssh
           chmod 700 ~/.ssh
@@ -43,7 +46,7 @@ jobs:
             --exclude='/src' \
             --exclude='.git*' \
             -e "ssh -o StrictHostKeyChecking=no" \
-            ./ rehanlodhi@rehanlodhi.com:/home/sites/dev.rehanlodhi.com/public/wp-content/themes/rehan-lodhi
-          
+            ./ "${SSH_USER}@${SSH_HOST}:${DEV_THEME_PATH}"
+
           # 4. Kill the agent for clean exit
           ssh-agent -k

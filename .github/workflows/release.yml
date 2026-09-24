@@ -52,9 +52,11 @@ jobs:
       - name: Deploy to Production (versioned release + symlink)
         env:
           SSH_KEY: ${{ secrets.SSH_KEY }}
-          RELEASES_ROOT: /home/rehanlodhi/releases/rehan-lodhi
-          THEME_LINK: /home/rehanlodhi/server/sites/rehanlodhi.com/public/wp-content/themes/rehan-lodhi
-          KEEP_RELEASES: 5
+          SSH_USER: ${{ vars.SSH_USER }}
+          SSH_HOST: ${{ vars.SSH_HOST }}
+          RELEASES_ROOT: ${{ vars.PROD_RELEASES_ROOT }}
+          THEME_LINK: ${{ vars.PROD_THEME_LINK }}
+          KEEP_RELEASES: ${{ vars.PROD_KEEP_RELEASES }}
         run: |
           # 1. Start the SSH agent and add your private key
           eval $(ssh-agent -s)
@@ -64,24 +66,25 @@ jobs:
           mkdir -p ~/.ssh
           chmod 700 ~/.ssh
 
+          SSH_TARGET="${SSH_USER}@${SSH_HOST}"
           RELEASE_DIR="${RELEASES_ROOT}/${GITHUB_REF_NAME}"
 
           # 3. Rsync the build into its own tag-named release directory —
           #    never into the live theme path directly, so the site keeps
           #    serving the previous release until the symlink flips below.
-          ssh -o StrictHostKeyChecking=no rehanlodhi@rehanlodhi.com "mkdir -p '${RELEASE_DIR}'"
+          ssh -o StrictHostKeyChecking=no "${SSH_TARGET}" "mkdir -p '${RELEASE_DIR}'"
           rsync -avz --delete \
             --exclude='/node_modules' \
             --exclude='/src' \
             --exclude='.git*' \
             -e "ssh -o StrictHostKeyChecking=no" \
-            ./ "rehanlodhi@rehanlodhi.com:${RELEASE_DIR}/"
+            ./ "${SSH_TARGET}:${RELEASE_DIR}/"
 
           # 4. Atomically point wp-content/themes/rehan-lodhi at the new
           #    release, then prune old releases beyond KEEP_RELEASES —
           #    but never the one currently live, so a rollback target
           #    can't be pruned out from under a manual re-point.
-          ssh -o StrictHostKeyChecking=no rehanlodhi@rehanlodhi.com bash -s <<EOF
+          ssh -o StrictHostKeyChecking=no "${SSH_TARGET}" bash -s <<EOF
             set -euo pipefail
 
             THEME_LINK="${THEME_LINK}"
