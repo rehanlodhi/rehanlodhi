@@ -31,7 +31,10 @@ jobs:
       - name: Package Theme Zip
         run: |
           # Stage a clean copy under the "rehan-lodhi" folder name so the
-          # zip extracts straight into wp-content/themes/rehan-lodhi.
+          # zip extracts straight into wp-content/themes/rehan-lodhi. Both
+          # the staging copy and the zip live under /tmp — never inside
+          # ${GITHUB_WORKSPACE} — since the next step rsyncs the workspace
+          # to production and doesn't know to exclude a zip it didn't expect.
           mkdir -p /tmp/release/rehan-lodhi
           rsync -a \
             --exclude='/node_modules' \
@@ -40,13 +43,13 @@ jobs:
             --exclude='/.github' \
             ./ /tmp/release/rehan-lodhi/
           cd /tmp/release
-          zip -r "${GITHUB_WORKSPACE}/rehan-lodhi-${GITHUB_REF_NAME}.zip" rehan-lodhi
+          zip -r "/tmp/release/rehan-lodhi-${GITHUB_REF_NAME}.zip" rehan-lodhi
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           name: ${{ github.ref_name }}
-          files: rehan-lodhi-${{ github.ref_name }}.zip
+          files: /tmp/release/rehan-lodhi-${{ github.ref_name }}.zip
           generate_release_notes: true
 
       - name: Deploy to Production (versioned release + symlink)
@@ -77,6 +80,7 @@ jobs:
             --exclude='/node_modules' \
             --exclude='/src' \
             --exclude='.git*' \
+            --exclude='*.zip' \
             -e "ssh -o StrictHostKeyChecking=no" \
             ./ "${SSH_TARGET}:${RELEASE_DIR}/"
 
