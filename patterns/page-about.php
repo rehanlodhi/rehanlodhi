@@ -17,7 +17,7 @@
 			<!-- wp:column {"width":"280px"} -->
 			<div class="wp-block-column" style="flex-basis:280px">
 				<!-- wp:image {"className":"hard-frame","aspectRatio":"1","scale":"cover","sizeSlug":"medium","linkDestination":"none"} -->
-				<figure class="wp-block-image size-medium hard-frame"><img src="https://rehanlodhi.test/wp-content/uploads/2026/03/3EA26DD6-60A8-401E-BDFC-BEA2561CEA4B_1_102_a-1.jpeg" alt="Rehan Lodhi" style="aspect-ratio:1;object-fit:cover"/></figure>
+				<figure class="wp-block-image size-medium hard-frame"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/rehan_lodhi.jpeg' ) ); ?>" alt="Rehan Lodhi" style="aspect-ratio:1;object-fit:cover"/></figure>
 				<!-- /wp:image -->
 
 				<!-- wp:heading {"level":2,"fontSize":"display-xs","style":{"typography":{"lineHeight":"1"},"spacing":{"margin":{"top":"var:preset|spacing|space-6","bottom":"var:preset|spacing|space-3"}}}} -->
@@ -43,7 +43,7 @@
 					<!-- /wp:paragraph -->
 
 					<!-- wp:paragraph {"className":"icon-row"} -->
-					<p class="icon-row"><a href="mailto:rehanlodhi@live.com">rehanlodhi@live.com</a></p>
+					<p class="icon-row"><a href="mailto:contact@rehanlodhi.com">contact@rehanlodhi.com</a></p>
 					<!-- /wp:paragraph --></div>
 				<!-- /wp:group -->
 

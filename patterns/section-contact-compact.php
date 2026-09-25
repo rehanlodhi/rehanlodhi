@@ -19,7 +19,7 @@
 			<!-- /wp:heading -->
 
 			<!-- wp:paragraph {"fontSize":"body-sm","textColor":"on-dark-body"} -->
-			<p class="has-on-dark-body-color has-text-color has-body-sm-font-size">rehanlodhi@live.com</p>
+			<p class="has-on-dark-body-color has-text-color has-body-sm-font-size">contact@rehanlodhi.com</p>
 			<!-- /wp:paragraph --></div>
 		<!-- /wp:group -->
 
@@ -30,7 +30,7 @@
 			<!-- /wp:button -->
 
 			<!-- wp:button {"className":"is-style-hard-fill"} -->
-			<div class="wp-block-button is-style-hard-fill"><a class="wp-block-button__link wp-element-button" href="mailto:rehanlodhi@live.com">Email Me</a></div>
+			<div class="wp-block-button is-style-hard-fill"><a class="wp-block-button__link wp-element-button" href="mailto:contact@rehanlodhi.com">Email Me</a></div>
 			<!-- /wp:button --></div>
 		<!-- /wp:buttons -->
 	</div>

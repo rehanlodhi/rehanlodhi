@@ -65,7 +65,7 @@ I'm a passionate web developer who loves creating and sharing content. My person
 
 - 💼 [LinkedIn](https://linkedin.com/in/rehanlodhi)
 - 🌐 [Personal Website](https://rehanlodhi.com)
-- 📫 [Email](mailto:rehanlodhi@live.com.com)
+- 📫 [Email](mailto:contact@rehanlodhi.com)
 
 ### 🎯 Goals for 2025
 

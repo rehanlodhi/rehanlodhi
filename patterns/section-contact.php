@@ -37,7 +37,7 @@
 				<!-- wp:group {"className":"contact-rows","layout":{"type":"flex","orientation":"vertical","flexWrap":"nowrap","verticalAlignment":"stretch"}} -->
 				<div class="wp-block-group contact-rows">
 					<!-- wp:paragraph {"fontSize":"body-sm"} -->
-					<p class="has-body-sm-font-size"><a href="mailto:rehanlodhi@live.com">Email &#8212; rehanlodhi@live.com</a></p>
+					<p class="has-body-sm-font-size"><a href="mailto:contact@rehanlodhi.com">Email &#8212; contact@rehanlodhi.com</a></p>
 					<!-- /wp:paragraph -->
 
 					<!-- wp:paragraph {"fontSize":"body-sm"} -->

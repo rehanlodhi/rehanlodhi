@@ -17,7 +17,7 @@
 		<!-- /wp:paragraph -->
 
 		<!-- wp:heading {"level":1,"fontSize":"display-hero","style":{"typography":{"lineHeight":"0.92"},"spacing":{"margin":{"top":"var:preset|spacing|space-3"}}}} -->
-		<h1 class="wp-block-heading has-display-hero-font-size" style="margin-top:var(--wp--preset--spacing--space-3);line-height:0.92">I build for AI<br>Backends &amp; <span style="color:var(--wp--preset--color--faint)">WordPress.</span></h1>
+		<h1 class="wp-block-heading has-display-hero-font-size" style="margin-top:var(--wp--preset--spacing--space-3);line-height:0.92">I build for AI<br>Backends &amp; <span style="color:var(--wp--preset--color--faint)">Data.</span></h1>
 		<!-- /wp:heading -->
 
 		<!-- wp:group {"style":{"spacing":{"margin":{"top":"var:preset|spacing|space-6"}}},"layout":{"type":"constrained","contentSize":"640px","justifyContent":"left"}} -->
