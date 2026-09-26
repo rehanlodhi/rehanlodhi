@@ -197,6 +197,36 @@ header.wp-block-template-part {
 	color: var(--wp--preset--color--heading);
 }
 
+// core/post-terms renders one wrapper with comma-separated links, so applying
+// .hard-tag straight to it boxes the whole group as a single pill. Here we
+// reset the wrapper itself and box each term link individually instead.
+.wp-block-post-terms.hard-tag {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+	border: none;
+	background: none;
+	padding: 0;
+
+	a {
+		display: inline-flex;
+		align-items: center;
+		border: var(--wp--custom--hard-border--width) solid var(--wp--custom--hard-border--color);
+		font-family: var(--wp--preset--font-family--mono);
+		text-transform: uppercase;
+		letter-spacing: var(--wp--custom--tracking--label);
+		font-size: var(--wp--preset--font-size--label-xxs);
+		padding: 4px 10px;
+		background: var(--wp--preset--color--surface-card);
+		color: var(--wp--preset--color--heading);
+		text-decoration: none;
+	}
+
+	.wp-block-post-terms__separator {
+		display: none;
+	}
+}
+
 .hard-avatar {
 	border-radius: 50%;
 	position: relative;
@@ -235,7 +265,7 @@ header.wp-block-template-part {
 		font-family: var(--wp--preset--font-family--mono);
 		font-size: var(--wp--preset--font-size--label-xs);
 		letter-spacing: var(--wp--custom--tracking--label-tight);
-		text-transform: uppercase;
+		text-transform: lowercase;
 		color: var(--wp--preset--color--muted);
 	}
 

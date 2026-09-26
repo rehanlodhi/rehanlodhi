@@ -23,7 +23,7 @@
 		<!-- wp:group {"style":{"spacing":{"margin":{"top":"var:preset|spacing|space-6"}}},"layout":{"type":"constrained","contentSize":"640px","justifyContent":"left"}} -->
 		<div class="wp-block-group" style="margin-top:var(--wp--preset--spacing--space-6)">
 			<!-- wp:paragraph {"fontSize":"body-lg","textColor":"body"} -->
-			<p class="has-body-color has-text-color has-body-lg-font-size">I&#8217;m a Software engineer based in Islamabad, specialising in backend systems, Growth Design Mentor and Design Studio Founder.</p>
+			<p class="has-body-color has-text-color has-body-lg-font-size">I&#8217;m a software engineer based in Islamabad, specialising in backend systems, data engineering, and AI integration.</p>
 			<!-- /wp:paragraph --></div>
 		<!-- /wp:group -->
 
