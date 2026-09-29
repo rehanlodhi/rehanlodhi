@@ -91,6 +91,29 @@
 				<!-- /wp:list -->
 
 				<!-- wp:heading {"level":2,"fontSize":"display-sm","style":{"typography":{"lineHeight":"1"},"spacing":{"margin":{"bottom":"1.25rem"}}}} -->
+				<h2 class="wp-block-heading has-display-sm-font-size" style="margin-bottom:1.25rem;line-height:1">Tech Stack</h2>
+				<!-- /wp:heading -->
+
+				<!-- wp:group {"style":{"spacing":{"blockGap":"0.5rem","margin":{"bottom":"3rem"}}}} -->
+				<div class="wp-block-group" style="margin-bottom:3rem">
+					<!-- wp:paragraph {"fontSize":"body-md","textColor":"body","style":{"typography":{"fontWeight":"300","lineHeight":"var(--wp--custom--line-height--loose)"}}} -->
+					<p class="has-body-color has-text-color has-body-md-font-size" style="font-weight:300;line-height:var(--wp--custom--line-height--loose)"><strong style="font-weight:500;color:var(--wp--preset--color--body-strong)">Languages:</strong> Python, PHP, JavaScript, SQL</p>
+					<!-- /wp:paragraph -->
+
+					<!-- wp:paragraph {"fontSize":"body-md","textColor":"body","style":{"typography":{"fontWeight":"300","lineHeight":"var(--wp--custom--line-height--loose)"}}} -->
+					<p class="has-body-color has-text-color has-body-md-font-size" style="font-weight:300;line-height:var(--wp--custom--line-height--loose)"><strong style="font-weight:500;color:var(--wp--preset--color--body-strong)">Frameworks &amp; Libraries:</strong> Django, FastAPI, Symfony, Laravel, WordPress</p>
+					<!-- /wp:paragraph -->
+
+					<!-- wp:paragraph {"fontSize":"body-md","textColor":"body","style":{"typography":{"fontWeight":"300","lineHeight":"var(--wp--custom--line-height--loose)"}}} -->
+					<p class="has-body-color has-text-color has-body-md-font-size" style="font-weight:300;line-height:var(--wp--custom--line-height--loose)"><strong style="font-weight:500;color:var(--wp--preset--color--body-strong)">Data &amp; AI:</strong> ETL Pipelines, Web Scraping, RAG, MCP (Model Context Protocol), Local LLMs</p>
+					<!-- /wp:paragraph -->
+
+					<!-- wp:paragraph {"fontSize":"body-md","textColor":"body","style":{"typography":{"fontWeight":"300","lineHeight":"var(--wp--custom--line-height--loose)"}}} -->
+					<p class="has-body-color has-text-color has-body-md-font-size" style="font-weight:300;line-height:var(--wp--custom--line-height--loose)"><strong style="font-weight:500;color:var(--wp--preset--color--body-strong)">Infrastructure &amp; DevOps:</strong> Linux, Docker, Nginx, GitHub Actions (CI/CD), rsync, MySQL, MongoDB</p>
+					<!-- /wp:paragraph --></div>
+				<!-- /wp:group -->
+
+				<!-- wp:heading {"level":2,"fontSize":"display-sm","style":{"typography":{"lineHeight":"1"},"spacing":{"margin":{"bottom":"1.25rem"}}}} -->
 				<h2 class="wp-block-heading has-display-sm-font-size" style="margin-bottom:1.25rem;line-height:1">How I Got Here</h2>
 				<!-- /wp:heading -->
 
@@ -113,145 +136,6 @@
 				<!-- wp:paragraph {"fontSize":"body-md","textColor":"body","style":{"typography":{"fontWeight":"300","lineHeight":"var(--wp--custom--line-height--loose)"}}} -->
 				<p class="has-body-color has-text-color has-body-md-font-size" style="font-weight:300;line-height:var(--wp--custom--line-height--loose)">Today, my work is deeply focused on data engineering, backend architecture, and AI integration. I spend my time building fast and scalable systems with Python and FastAPI, designing resilient ETL pipelines, and engineering the hidden infrastructure that keeps modern applications running smoothly. Recently, I developed an AI-powered invoice triage agent for the logistics industry, which automatically extracts and processes load data directly from rate confirmations. I also built a Model Context Protocol (MCP) integration, allowing Claude to interact securely and directly with internal backend systems. To keep pushing the boundaries of what is possible, I am actively expanding my expertise in AI tooling, leveraging advanced coding agents to eliminate human error, streamline development cycles, and write highly resilient code. Taking the scenic route from full-stack web development to specialized backend and AI architecture gave me a comprehensive understanding of how software operates, allowing me to build intelligent systems that scale reliably from the database to the end user.</p>
 				<!-- /wp:paragraph -->
-
-				<!-- wp:heading {"level":2,"fontSize":"display-sm","style":{"typography":{"lineHeight":"1"},"spacing":{"margin":{"top":"3rem","bottom":"1.25rem"}}}} -->
-				<h2 class="wp-block-heading has-display-sm-font-size" style="margin-top:3rem;margin-bottom:1.25rem;line-height:1">Experience</h2>
-				<!-- /wp:heading -->
-
-				<!-- wp:group {"className":"timeline-rail","style":{"spacing":{"blockGap":"var:preset|spacing|space-7"}},"layout":{"type":"default"}} -->
-				<div class="wp-block-group timeline-rail">
-					<!-- wp:group {"className":"timeline-item","style":{"spacing":{"blockGap":"var:preset|spacing|space-2"}},"layout":{"type":"default"}} -->
-					<div class="wp-block-group timeline-item">
-						<!-- wp:paragraph {"style":{"typography":{"fontFamily":"var:preset|font-family|mono","fontSize":"var:preset|font-size|label-xs","letterSpacing":"0.08em"}},"textColor":"faint"} -->
-						<p class="has-faint-color has-text-color" style="font-family:var(--wp--preset--font-family--mono);font-size:var(--wp--preset--font-size--label-xs);letter-spacing:0.08em">Feb 2026 &#8211; Present</p>
-						<!-- /wp:paragraph -->
-
-						<!-- wp:paragraph {"fontSize":"body-md","textColor":"heading","style":{"typography":{"fontWeight":"500"}}} -->
-						<p class="has-heading-color has-text-color has-body-md-font-size" style="font-weight:500">Senior Backend Engineer &amp; AI Integrator</p>
-						<!-- /wp:paragraph -->
-
-						<!-- wp:paragraph {"fontSize":"body-xs","textColor":"muted"} -->
-						<p class="has-muted-color has-text-color has-body-xs-font-size">Yield Trucking Services &#183; Individual Contractor</p>
-						<!-- /wp:paragraph -->
-
-						<!-- wp:list {"fontSize":"body-xs","textColor":"muted","style":{"typography":{"fontWeight":"300","lineHeight":"1.6"},"spacing":{"padding":{"left":"1.1rem"}}}} -->
-						<ul class="wp-block-list has-muted-color has-text-color has-body-xs-font-size" style="padding-left:1.1rem;font-weight:300;line-height:1.6">
-						<!-- wp:list-item -->
-						<li>Architected a complete digital transformation, replacing manual spreadsheets with a fully automated Python/FastAPI backend system for load logging and fleet management.</li>
-						<!-- /wp:list-item -->
-
-						<!-- wp:list-item -->
-						<li>Engineered an AI-powered invoice triage agent to automatically extract load data from rate confirmations.</li>
-						<!-- /wp:list-item -->
-
-						<!-- wp:list-item -->
-						<li>Developed a Model Context Protocol (MCP) integration, enabling secure interaction between Claude AI and internal backend databases.</li>
-						<!-- /wp:list-item -->
-						</ul>
-						<!-- /wp:list --></div>
-					<!-- /wp:group -->
-
-					<!-- wp:group {"className":"timeline-item","style":{"spacing":{"blockGap":"var:preset|spacing|space-2"}},"layout":{"type":"default"}} -->
-					<div class="wp-block-group timeline-item">
-						<!-- wp:paragraph {"style":{"typography":{"fontFamily":"var:preset|font-family|mono","fontSize":"var:preset|font-size|label-xs","letterSpacing":"0.08em"}},"textColor":"faint"} -->
-						<p class="has-faint-color has-text-color" style="font-family:var(--wp--preset--font-family--mono);font-size:var(--wp--preset--font-size--label-xs);letter-spacing:0.08em">Oct 2022 &#8211; Jan 2026</p>
-						<!-- /wp:paragraph -->
-
-						<!-- wp:paragraph {"fontSize":"body-md","textColor":"heading","style":{"typography":{"fontWeight":"500"}}} -->
-						<p class="has-heading-color has-text-color has-body-md-font-size" style="font-weight:500">Senior WordPress/PHP Developer</p>
-						<!-- /wp:paragraph -->
-
-						<!-- wp:paragraph {"fontSize":"body-xs","textColor":"muted"} -->
-						<p class="has-muted-color has-text-color has-body-xs-font-size">Colibri &#183; Remote</p>
-						<!-- /wp:paragraph -->
-
-						<!-- wp:list {"fontSize":"body-xs","textColor":"muted","style":{"typography":{"fontWeight":"300","lineHeight":"1.6"},"spacing":{"padding":{"left":"1.1rem"}}}} -->
-						<ul class="wp-block-list has-muted-color has-text-color has-body-xs-font-size" style="padding-left:1.1rem;font-weight:300;line-height:1.6">
-						<!-- wp:list-item -->
-						<li>Managed enterprise-level architecture for high-traffic educational platforms in healthcare and real estate.</li>
-						<!-- /wp:list-item -->
-
-						<!-- wp:list-item -->
-						<li>Developed REST APIs, custom blocks, and bridged frontend components with scalable backend logic using advanced PHP.</li>
-						<!-- /wp:list-item -->
-						</ul>
-						<!-- /wp:list --></div>
-					<!-- /wp:group -->
-
-					<!-- wp:group {"className":"timeline-item","style":{"spacing":{"blockGap":"var:preset|spacing|space-2"}},"layout":{"type":"default"}} -->
-					<div class="wp-block-group timeline-item">
-						<!-- wp:paragraph {"style":{"typography":{"fontFamily":"var:preset|font-family|mono","fontSize":"var:preset|font-size|label-xs","letterSpacing":"0.08em"}},"textColor":"faint"} -->
-						<p class="has-faint-color has-text-color" style="font-family:var(--wp--preset--font-family--mono);font-size:var(--wp--preset--font-size--label-xs);letter-spacing:0.08em">Oct 2021 &#8211; Apr 2022</p>
-						<!-- /wp:paragraph -->
-
-						<!-- wp:paragraph {"fontSize":"body-md","textColor":"heading","style":{"typography":{"fontWeight":"500"}}} -->
-						<p class="has-heading-color has-text-color has-body-md-font-size" style="font-weight:500">Associate Software Engineer</p>
-						<!-- /wp:paragraph -->
-
-						<!-- wp:paragraph {"fontSize":"body-xs","textColor":"muted"} -->
-						<p class="has-muted-color has-text-color has-body-xs-font-size">US National Highways Project &#183; Islamabad</p>
-						<!-- /wp:paragraph -->
-
-						<!-- wp:list {"fontSize":"body-xs","textColor":"muted","style":{"typography":{"fontWeight":"300","lineHeight":"1.6"},"spacing":{"padding":{"left":"1.1rem"}}}} -->
-						<ul class="wp-block-list has-muted-color has-text-color has-body-xs-font-size" style="padding-left:1.1rem;font-weight:300;line-height:1.6">
-						<!-- wp:list-item -->
-						<li>Maintained and upgraded high-traffic informational websites, focusing on performance optimization.</li>
-						<!-- /wp:list-item -->
-
-						<!-- wp:list-item -->
-						<li>Managed Linux server configurations, wrote deployment scripts, and executed complex data migrations and cron jobs.</li>
-						<!-- /wp:list-item -->
-						</ul>
-						<!-- /wp:list --></div>
-					<!-- /wp:group -->
-
-					<!-- wp:group {"className":"timeline-item","style":{"spacing":{"blockGap":"var:preset|spacing|space-2"}},"layout":{"type":"default"}} -->
-					<div class="wp-block-group timeline-item">
-						<!-- wp:paragraph {"style":{"typography":{"fontFamily":"var:preset|font-family|mono","fontSize":"var:preset|font-size|label-xs","letterSpacing":"0.08em"}},"textColor":"faint"} -->
-						<p class="has-faint-color has-text-color" style="font-family:var(--wp--preset--font-family--mono);font-size:var(--wp--preset--font-size--label-xs);letter-spacing:0.08em">2016 &#8211; Oct 2021</p>
-						<!-- /wp:paragraph -->
-
-						<!-- wp:paragraph {"fontSize":"body-md","textColor":"heading","style":{"typography":{"fontWeight":"500"}}} -->
-						<p class="has-heading-color has-text-color has-body-md-font-size" style="font-weight:500">Freelance Web Developer</p>
-						<!-- /wp:paragraph -->
-
-						<!-- wp:paragraph {"fontSize":"body-xs","textColor":"muted"} -->
-						<p class="has-muted-color has-text-color has-body-xs-font-size">Independent &#183; Remote</p>
-						<!-- /wp:paragraph -->
-
-						<!-- wp:list {"fontSize":"body-xs","textColor":"muted","style":{"typography":{"fontWeight":"300","lineHeight":"1.6"},"spacing":{"padding":{"left":"1.1rem"}}}} -->
-						<ul class="wp-block-list has-muted-color has-text-color has-body-xs-font-size" style="padding-left:1.1rem;font-weight:300;line-height:1.6">
-						<!-- wp:list-item -->
-						<li>Delivered custom PHP, JavaScript, and WordPress solutions (themes and plugins) from scratch for diverse business clients.</li>
-						<!-- /wp:list-item -->
-						</ul>
-						<!-- /wp:list --></div>
-					<!-- /wp:group -->
-				</div>
-				<!-- /wp:group -->
-
-				<!-- wp:heading {"level":2,"fontSize":"display-sm","style":{"typography":{"lineHeight":"1"},"spacing":{"margin":{"top":"3rem","bottom":"1.25rem"}}}} -->
-				<h2 class="wp-block-heading has-display-sm-font-size" style="margin-top:3rem;margin-bottom:1.25rem;line-height:1">Tech Stack</h2>
-				<!-- /wp:heading -->
-
-				<!-- wp:group {"style":{"spacing":{"blockGap":"0.5rem"}}} -->
-				<div class="wp-block-group">
-					<!-- wp:paragraph {"fontSize":"body-md","textColor":"body","style":{"typography":{"fontWeight":"300","lineHeight":"var(--wp--custom--line-height--loose)"}}} -->
-					<p class="has-body-color has-text-color has-body-md-font-size" style="font-weight:300;line-height:var(--wp--custom--line-height--loose)"><strong style="font-weight:500;color:var(--wp--preset--color--body-strong)">Languages:</strong> Python, PHP (8.x), JavaScript, SQL</p>
-					<!-- /wp:paragraph -->
-
-					<!-- wp:paragraph {"fontSize":"body-md","textColor":"body","style":{"typography":{"fontWeight":"300","lineHeight":"var(--wp--custom--line-height--loose)"}}} -->
-					<p class="has-body-color has-text-color has-body-md-font-size" style="font-weight:300;line-height:var(--wp--custom--line-height--loose)"><strong style="font-weight:500;color:var(--wp--preset--color--body-strong)">Frameworks &amp; Libraries:</strong> FastAPI, Symfony, Laravel, WordPress</p>
-					<!-- /wp:paragraph -->
-
-					<!-- wp:paragraph {"fontSize":"body-md","textColor":"body","style":{"typography":{"fontWeight":"300","lineHeight":"var(--wp--custom--line-height--loose)"}}} -->
-					<p class="has-body-color has-text-color has-body-md-font-size" style="font-weight:300;line-height:var(--wp--custom--line-height--loose)"><strong style="font-weight:500;color:var(--wp--preset--color--body-strong)">Data &amp; AI:</strong> ETL Pipelines, Web Scraping, RAG, MCP (Model Context Protocol), Local LLMs</p>
-					<!-- /wp:paragraph -->
-
-					<!-- wp:paragraph {"fontSize":"body-md","textColor":"body","style":{"typography":{"fontWeight":"300","lineHeight":"var(--wp--custom--line-height--loose)"}}} -->
-					<p class="has-body-color has-text-color has-body-md-font-size" style="font-weight:300;line-height:var(--wp--custom--line-height--loose)"><strong style="font-weight:500;color:var(--wp--preset--color--body-strong)">Infrastructure &amp; DevOps:</strong> Linux, Docker, Nginx, GitHub Actions (CI/CD), rsync, MySQL, MongoDB</p>
-					<!-- /wp:paragraph --></div>
-				<!-- /wp:group -->
 
 				<!-- wp:group {"style":{"border":{"top":{"color":"var:preset|color|border-default","width":"1px"}},"spacing":{"padding":{"top":"3rem"},"margin":{"top":"3rem"}}}} -->
 				<div class="wp-block-group" style="border-top-color:var(--wp--preset--color--border-default);border-top-width:1px;margin-top:3rem;padding-top:3rem">
