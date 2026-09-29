@@ -15,6 +15,12 @@ My personal theme for portfolio
 
 == Changelog ==
 
+= 1.1.0 =
+* Rebuild about page: hero statement, competency list, narrative bio, tech stack, and CTA
+* Replace static homepage project cards with a live Query Loop
+* Fix project card tags to render as separate boxes
+* Update homepage hero subtitle
+
 = 1.0.0 =
 * Initial release
 
