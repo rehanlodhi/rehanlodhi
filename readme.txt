@@ -15,6 +15,9 @@ My personal theme for portfolio
 
 == Changelog ==
 
+= 1.3.0 =
+* Add generic page.html template so new Pages created in wp-admin actually render their content
+
 = 1.2.0 =
 * Load compiled theme CSS into the block editor iframe so patterns render the same in the editor as on the front end
 
