@@ -12,6 +12,16 @@ function wml_theme_assets(): void {
     );
 }
 
+// Load the same compiled CSS into the block editor iframe. Without this,
+// hand-rolled classes (.hard-tag, .is-style-hard-card, etc.) only ever
+// render on the front end — theme.json tokens reach the editor automatically,
+// but a plain wp_enqueue_scripts hook does not.
+add_action( 'after_setup_theme', 'wml_add_editor_style_support' );
+function wml_add_editor_style_support(): void {
+    add_theme_support( 'editor-styles' );
+    add_editor_style( 'assets/css/theme.css' );
+}
+
 // Hard-border block styles + pattern category
 add_action( 'init', 'wml_register_block_styles' );
 function wml_register_block_styles(): void {
