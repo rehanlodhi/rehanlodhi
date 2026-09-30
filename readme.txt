@@ -15,6 +15,11 @@ My personal theme for portfolio
 
 == Changelog ==
 
+= 1.4.0 =
+* Add align:full to hero, projects, writing, and contact sections so their background band spans the full viewport width
+* Fix root padding so the theme's global-padding mechanism actually applies a value instead of resolving to nothing
+* Simplify page.html down to header/post-content/footer
+
 = 1.3.0 =
 * Add generic page.html template so new Pages created in wp-admin actually render their content
 
