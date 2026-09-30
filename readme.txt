@@ -15,6 +15,9 @@ My personal theme for portfolio
 
 == Changelog ==
 
+= 1.2.0 =
+* Load compiled theme CSS into the block editor iframe so patterns render the same in the editor as on the front end
+
 = 1.1.0 =
 * Rebuild about page: hero statement, competency list, narrative bio, tech stack, and CTA
 * Replace static homepage project cards with a live Query Loop
