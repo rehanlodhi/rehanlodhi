@@ -8,6 +8,9 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: production-deploy
+
 jobs:
   release:
     name: Build and Deploy
@@ -15,20 +18,38 @@ jobs:
 
     steps:
       - name: Get Latest Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7.0.1
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7.0.0
         with:
-          node-version: 'latest'
+          node-version: '24'
           cache: 'npm'
 
       - name: Run Build
         run: |
-          npm install
+          npm ci
           npm run build
 
-      - name: Deploy to Production (versioned release + symlink)
+      - name: Install WP-CLI
+        run: |
+          curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+          chmod +x wp-cli.phar
+          sudo mv wp-cli.phar /usr/local/bin/wp
+          wp package install wp-cli/dist-archive-command
+
+      - name: Package Theme
+        run: |
+          # wp dist-archive reads .distignore to strip dev-only files
+          # (node_modules, src, package*.json, etc.) and wraps the result
+          # in a single top-level folder — the same layout WordPress
+          # expects when installing a theme zip.
+          wp dist-archive . ./rehan-lodhi.zip
+          mkdir -p ./dist
+          unzip -q ./rehan-lodhi.zip -d ./dist
+          echo "PACKAGE_DIR=$(find ./dist -mindepth 1 -maxdepth 1 -type d)" >> "$GITHUB_ENV"
+
+      - name: Deploy to Production
         env:
           SSH_KEY: ${{ secrets.SSH_KEY }}
           SSH_USER: ${{ vars.SSH_USER }}
@@ -48,16 +69,14 @@ jobs:
           SSH_TARGET="${SSH_USER}@${SSH_HOST}"
           RELEASE_DIR="${RELEASES_ROOT}/${GITHUB_REF_NAME}"
 
-          # 3. Rsync the build into its own tag-named release directory —
-          #    never into the live theme path directly, so the site keeps
-          #    serving the previous release until the symlink flips below.
+          # 3. Rsync the extracted, already-filtered package into its own
+          #    tag-named release directory — never into the live theme path
+          #    directly, so the site keeps serving the previous release
+          #    until the symlink flips below.
           ssh -o StrictHostKeyChecking=no "${SSH_TARGET}" "mkdir -p '${RELEASE_DIR}'"
           rsync -avz --delete \
-            --exclude='/node_modules' \
-            --exclude='/src' \
-            --exclude='.git*' \
             -e "ssh -o StrictHostKeyChecking=no" \
-            ./ "${SSH_TARGET}:${RELEASE_DIR}/"
+            "${PACKAGE_DIR}/" "${SSH_TARGET}:${RELEASE_DIR}/"
 
           # 4. Atomically point wp-content/themes/rehan-lodhi at the new
           #    release, then prune old releases beyond KEEP_RELEASES —

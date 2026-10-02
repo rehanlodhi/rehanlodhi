@@ -15,6 +15,9 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: production-deploy
+
 jobs:
   rollback:
     name: Repoint Theme Symlink
