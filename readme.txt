@@ -15,6 +15,11 @@ My personal theme for portfolio
 
 == Changelog ==
 
+= 1.6.1 =
+* Set font-display: swap and add metric-matched fallback fonts to reduce font-swap layout shift
+* Preload the web fonts so they are requested with the HTML instead of after the CSS
+* Inline theme.css on the front end to remove a render-blocking request
+
 = 1.6.0 =
 * Narrow single post content to 850px, independent of the site's 1080px default
 * Convert the Display font-size scale to explicit rem values with fluid min/max ranges
