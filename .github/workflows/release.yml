@@ -32,6 +32,12 @@ jobs:
           npm run build
 
       - name: Install WP-CLI
+        env:
+          # Composer resolves dist-archive-command's tags via the GitHub API;
+          # unauthenticated requests hit a low rate limit and intermittently
+          # fail with "Could not authenticate against github.com". The
+          # workflow's own GITHUB_TOKEN is enough to fix that.
+          COMPOSER_AUTH: '{"github-oauth":{"github.com":"${{ secrets.GITHUB_TOKEN }}"}}'
         run: |
           curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
           chmod +x wp-cli.phar
