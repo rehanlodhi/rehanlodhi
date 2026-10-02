@@ -19,7 +19,7 @@ My personal theme for portfolio
 * Set font-display: optional on the web fonts so they never swap in mid-load, removing font-swap layout shift
 * Preload the web fonts so they are requested with the HTML instead of after the CSS
 * Inline theme.css on the front end to remove a render-blocking request
-* Add a main landmark to the home, page, about and single post templates
+* Add a main landmark to the home, page, about and single post templates (page template keeps full-width sections full width)
 
 = 1.6.0 =
 * Narrow single post content to 850px, independent of the site's 1080px default
