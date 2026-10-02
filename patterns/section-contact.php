@@ -20,8 +20,8 @@
 				<p class="eyebrow eyebrow--on-dark">Get In Touch</p>
 				<!-- /wp:paragraph -->
 
-				<!-- wp:heading {"level":2,"fontSize":"display-lg","textColor":"on-dark-heading","style":{"typography":{"lineHeight":"0.95"}}} -->
-				<h2 class="wp-block-heading has-on-dark-heading-color has-text-color has-display-lg-font-size" style="line-height:0.95">Let&#8217;s<br>Work<br>Together.</h2>
+				<!-- wp:heading {"level":2,"fontSize":"display-lg","textColor":"on-dark-heading","style":{"typography":{"lineHeight":"0.95","textTransform":"uppercase"}}} -->
+				<h2 class="wp-block-heading has-on-dark-heading-color has-text-color has-display-lg-font-size" style="line-height:0.95;text-transform:uppercase">Let&#8217;s<br>Work<br>Together.</h2>
 				<!-- /wp:heading -->
 
 				<!-- wp:group {"style":{"spacing":{"margin":{"top":"var:preset|spacing|space-4"}}},"layout":{"type":"constrained","contentSize":"440px","justifyContent":"left"}} -->

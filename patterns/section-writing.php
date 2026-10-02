@@ -18,8 +18,8 @@
 			<p class="eyebrow" style="margin-bottom:3rem">Writing</p>
 			<!-- /wp:paragraph -->
 
-			<!-- wp:heading {"level":2,"fontSize":"display-md"} -->
-			<h2 class="wp-block-heading has-display-md-font-size">Recent Posts</h2>
+			<!-- wp:heading {"level":2,"fontSize":"display-md","style":{"typography":{"textTransform":"uppercase"}}} -->
+			<h2 class="wp-block-heading has-display-md-font-size" style="text-transform:uppercase">Recent Posts</h2>
 			<!-- /wp:heading -->
 		</div>
 		<!-- /wp:group -->
