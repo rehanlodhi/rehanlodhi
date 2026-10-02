@@ -15,6 +15,13 @@ My personal theme for portfolio
 
 == Changelog ==
 
+= 1.6.0 =
+* Narrow single post content to 850px, independent of the site's 1080px default
+* Convert the Display font-size scale to explicit rem values with fluid min/max ranges
+* Add Blog Title and Post H2 font-size presets and apply Post H2 as the default H2 size
+* Switch the global heading default from uppercase to capitalize, with explicit uppercase kept on the homepage sections (hero, projects, writing, contact)
+* Add default code block styling (mono font, 14px, zinc-100 background, zinc-300 border, consistent padding)
+
 = 1.5.0 =
 * Bump actions/checkout and actions/setup-node to v7, pin Node to 24 LTS in the release workflow
 * Switch release build from npm install to npm ci for reproducible installs
