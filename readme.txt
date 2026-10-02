@@ -16,7 +16,7 @@ My personal theme for portfolio
 == Changelog ==
 
 = 1.6.1 =
-* Set font-display: swap and add metric-matched fallback fonts to reduce font-swap layout shift
+* Set font-display: optional on the web fonts so they never swap in mid-load, removing font-swap layout shift
 * Preload the web fonts so they are requested with the HTML instead of after the CSS
 * Inline theme.css on the front end to remove a render-blocking request
 

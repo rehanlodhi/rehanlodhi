@@ -103,13 +103,13 @@
 				{
 					"name": "Display",
 					"slug": "display",
-					"fontFamily": "'Bebas Neue', 'Bebas Neue Fallback', sans-serif",
+					"fontFamily": "'Bebas Neue', sans-serif",
 					"fontFace": [
 						{
 							"fontFamily": "Bebas Neue",
 							"fontWeight": "400",
 							"fontStyle": "normal",
-							"fontDisplay": "swap",
+							"fontDisplay": "optional",
 							"src": [ "file:./assets/fonts/bebas-neue/webfonts/BebasNeue-Regular.woff2" ]
 						}
 					]
@@ -117,20 +117,20 @@
 				{
 					"name": "Mono",
 					"slug": "mono",
-					"fontFamily": "'IBM Plex Mono', 'IBM Plex Mono Fallback', monospace",
+					"fontFamily": "'IBM Plex Mono', monospace",
 					"fontFace": [
 						{
 							"fontFamily": "IBM Plex Mono",
 							"fontWeight": "400",
 							"fontStyle": "normal",
-							"fontDisplay": "swap",
+							"fontDisplay": "optional",
 							"src": [ "file:./assets/fonts/ibm-plex-mono/webfonts/IBMPlexMono-Regular.woff2" ]
 						},
 						{
 							"fontFamily": "IBM Plex Mono",
 							"fontWeight": "500",
 							"fontStyle": "normal",
-							"fontDisplay": "swap",
+							"fontDisplay": "optional",
 							"src": [ "file:./assets/fonts/ibm-plex-mono/webfonts/IBMPlexMono-Medium.woff2" ]
 						}
 					]
@@ -138,13 +138,13 @@
 				{
 					"name": "Body",
 					"slug": "body",
-					"fontFamily": "'IBM Plex Sans', 'IBM Plex Sans Fallback', sans-serif",
+					"fontFamily": "'IBM Plex Sans', sans-serif",
 					"fontFace": [
 						{
 							"fontFamily": "IBM Plex Sans",
 							"fontWeight": "300 600",
 							"fontStyle": "normal",
-							"fontDisplay": "swap",
+							"fontDisplay": "optional",
 							"src": [ "file:./assets/fonts/ibm-plex-sans/IBMPlexSans-VariableFont_wght.woff2" ]
 						}
 					]

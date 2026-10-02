@@ -2,37 +2,6 @@
 	box-shadow: $offset $offset 0 var(--wp--custom--hard-shadow--color);
 }
 
-// Metric-matched fallbacks: while a web font loads, text renders in a local
-// system font scaled/adjusted to the web font's metrics, so the swap causes
-// (almost) no layout shift. Values computed from the font files vs Arial /
-// Courier New (average advance width, ascent, descent).
-@font-face {
-	font-family: "Bebas Neue Fallback";
-	src: local("Arial"), local("Liberation Sans");
-	size-adjust: 66%;
-	ascent-override: 136.6%;
-	descent-override: 45.5%;
-	line-gap-override: 0%;
-}
-
-@font-face {
-	font-family: "IBM Plex Sans Fallback";
-	src: local("Arial"), local("Liberation Sans");
-	size-adjust: 97.5%;
-	ascent-override: 105.2%;
-	descent-override: 28.2%;
-	line-gap-override: 0%;
-}
-
-@font-face {
-	font-family: "IBM Plex Mono Fallback";
-	src: local("Courier New"), local("Liberation Mono");
-	size-adjust: 100%;
-	ascent-override: 102.5%;
-	descent-override: 27.5%;
-	line-gap-override: 0%;
-}
-
 // Without this, any element combining width:100% with padding (content-box
 // is the browser default) renders wider than its container and can push the
 // whole document into horizontal scroll — this is what caused the contact
