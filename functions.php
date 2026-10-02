@@ -1,15 +1,35 @@
 <?php
-// Load front-end assets
+// Load front-end assets. theme.css is small (~9 KB), so it's inlined in <head>
+// instead of linked — a linked stylesheet is render-blocking and delays the
+// request for everything it unlocks. The editor still loads the file (below).
 add_action( 'wp_enqueue_scripts', 'wml_theme_assets' );
 function wml_theme_assets(): void {
-    $assets = include get_theme_file_path( 'assets/css/theme.asset.php' );
-
-    wp_enqueue_style(
+    wp_register_style( 'wml-style', false );
+    wp_enqueue_style( 'wml-style' );
+    wp_add_inline_style(
         'wml-style',
-        get_theme_file_uri( '/assets/css/theme.css' ),
-        $assets['dependencies'],
-        $assets['version']
+        (string) file_get_contents( get_theme_file_path( 'assets/css/theme.css' ) )
     );
+}
+
+// Preload the web fonts so they're requested with the HTML instead of being
+// discovered only after the CSS is parsed (breaks the HTML -> CSS -> font
+// request chain). crossorigin is required for font preloads.
+add_action( 'wp_head', 'wml_preload_fonts', 1 );
+function wml_preload_fonts(): void {
+    $fonts = [
+        'assets/fonts/ibm-plex-sans/IBMPlexSans-VariableFont_wght.woff2',
+        'assets/fonts/bebas-neue/webfonts/BebasNeue-Regular.woff2',
+        'assets/fonts/ibm-plex-mono/webfonts/IBMPlexMono-Regular.woff2',
+        'assets/fonts/ibm-plex-mono/webfonts/IBMPlexMono-Medium.woff2',
+    ];
+
+    foreach ( $fonts as $font ) {
+        printf(
+            '<link rel="preload" href="%s" as="font" type="font/woff2" crossorigin>' . "\n",
+            esc_url( get_theme_file_uri( $font ) )
+        );
+    }
 }
 
 // Load the same compiled CSS into the block editor iframe. Without this,
