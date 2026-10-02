@@ -15,6 +15,13 @@ My personal theme for portfolio
 
 == Changelog ==
 
+= 1.5.0 =
+* Bump actions/checkout and actions/setup-node to v7, pin Node to 24 LTS in the release workflow
+* Switch release build from npm install to npm ci for reproducible installs
+* Add a shared concurrency group so release and rollback can't interleave on the production symlink
+* Remove deploy.yml (no staging workflow currently in use)
+* Package releases with wp dist-archive + .distignore instead of ad-hoc rsync excludes
+
 = 1.4.0 =
 * Add align:full to hero, projects, writing, and contact sections so their background band spans the full viewport width
 * Fix root padding so the theme's global-padding mechanism actually applies a value instead of resolving to nothing
