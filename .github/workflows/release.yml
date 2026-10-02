@@ -32,21 +32,24 @@ jobs:
           npm run build
 
       - name: Install WP-CLI
-        env:
-          # Composer resolves dist-archive-command's tags via the GitHub API;
-          # unauthenticated requests hit a low rate limit and intermittently
-          # fail with "Could not authenticate against github.com". The
-          # workflow's own GITHUB_TOKEN is enough to fix that.
-          COMPOSER_AUTH: '{"github-oauth":{"github.com":"${{ secrets.GITHUB_TOKEN }}"}}'
         run: |
           curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
           chmod +x wp-cli.phar
           sudo mv wp-cli.phar /usr/local/bin/wp
+          # `wp package install` always registers the package's GitHub repo as
+          # a Composer VCS source to resolve its tag, even for an
+          # already-Packagist-published package — which needs a live GitHub
+          # API call and fails under the runner's anonymous rate limit, and
+          # a GITHUB_TOKEN doesn't fix it either (Composer's github-oauth
+          # validator rejects Actions' newer ghs_-prefixed token format).
+          # Installing straight from Packagist with plain Composer avoids
+          # the GitHub API entirely.
           # Pinned: dist-archive-command's dev-main and v3.2.x require
           # wp-cli/wp-cli ^2.13/^3.0, neither of which is a released
           # stable core version yet (stable is 2.12.0) — v3.1.0 is the
           # newest tag that still only requires ^2.
-          wp package install wp-cli/dist-archive-command:3.1.0
+          mkdir -p "$HOME/.wp-cli/packages"
+          composer require --working-dir="$HOME/.wp-cli/packages" --no-interaction wp-cli/dist-archive-command:3.1.0
 
       - name: Package Theme
         run: |
